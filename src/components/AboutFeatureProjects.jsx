@@ -35,7 +35,7 @@ const AboutFeatureProjects = () => {
             />
 
             <img
-              src="https://images.unsplash.com/photo-1599058917212-d750089bc07a?auto=format&fit=crop&w=900&q=80"
+              src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=900&q=80"
               alt="project2"
               className="w-full h-[360px] object-cover"
             />

@@ -10,11 +10,13 @@ const HeroFeatures = () => {
             <span className="text-[#86b817] text-[34px]">⟡</span>
           </div>
           <h3 className="text-[16px] font-bold text-[#111111] mb-2">
-            Personalized Nutrition
+            Our Values
           </h3>
           <p className="text-[#777777] text-[13px] leading-6">
-            how all this mistaken idea of it is a long established fact will be
-            distracted by the readable of denoun established.
+           Since a healthy diet and physical fitness go hand-in-hand and are an integral part of one another,
+            <span className="font-semibold text-green-600"> DIET WINDOW </span> has made 
+           it a priority to offer all a wealth of diverse information,
+            to fight diseases and stay healthy via effective diet.
           </p>
         </div>
 
@@ -24,11 +26,13 @@ const HeroFeatures = () => {
             <span className="text-[#86b817] text-[34px]">⟡</span>
           </div>
           <h3 className="text-[16px] font-bold text-[#111111] mb-2">
-            Health Diet Programs
+            Expert Team
           </h3>
           <p className="text-[#777777] text-[13px] leading-6">
-            how all this mistaken idea of it is a long established fact will be
-            distracted by the readable of denoun established.
+            We are very proud to have established professionals in the diet, 
+            health, safety and fitness profession to share best information with 
+            you via their practice and aid to suffice your knowledge on all healthy diet; 
+            disease related paradigms wherever we can.
           </p>
         </div>
 
@@ -38,11 +42,12 @@ const HeroFeatures = () => {
             <span className="text-[#86b817] text-[34px]">⟡</span>
           </div>
           <h3 className="text-[16px] font-bold text-[#111111] mb-2">
-            Weight Loss Program
+            Our Mission
           </h3>
           <p className="text-[#777777] text-[13px] leading-6">
-            how all this mistaken idea of it is a long established fact will be
-            distracted by the readable of denoun established.
+            <span className="font-semibold text-green-600"> DIET WINDOW </span> with the mission to save lives by disseminating vital health and diet information, 
+            in homes and communities, 
+            and on the road through leadership, research, education and advocacy.
           </p>
         </div>
       </div>

@@ -9,12 +9,12 @@ const About = () => {
   ];
 
   const offers = [
-    { title: 'Balance Body & Mind' },
-    { title: 'Personal Coaching' },
-    { title: 'Personalized Nutrition' },
-    { title: 'Sports Nutritionist' },
-    { title: 'Child Nutrition' },
-    { title: 'Support & Motivation' }
+    { title: 'Consulting Nutritionist and certified clinical researcher' },
+    { title: 'Attended and presented research papers in various national and international conferences.' },
+    { title: 'Published research papers in national and international journals indexed in Pubmed, Research gate etc.' },
+    { title: 'Nutrition experts to various Government and non government organizations.' },
+    { title: 'Represented nutritionists on various media platforms including TV channel, Radio channels, magazine and news papers.' },
+    { title: 'Conducted many path breaking events and educational programs including workshops CME’s and conferences with reference to nutrition, dietary habits and other burning health issues for the community.' }
   ];
 
   return (
@@ -28,15 +28,16 @@ const About = () => {
               ABOUT NUTRITIUS
             </p>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Improving By The Inspir Healthy Living
+              Raksha Goyal
             </h2>
+            <h4 className='mb-2'>M.Sc. Foods and Nutrition</h4>
             <p className="text-gray-600 mb-6 leading-relaxed">
-              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+              With an M.Sc. in Foods and Nutrition, Raksha Goyal is a dedicated Consulting Nutritionist committed to improving lives through evidence-based dietary guidance and clinical research.
             </p>
             
             <div className="mb-8">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Nutration Special Offers</h3>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 gap-3">
                 {offers.map((offer, index) => (
                   <div key={index} className="flex items-center space-x-2">
                     <span className="text-green-500 font-bold text-xl">✓</span>
