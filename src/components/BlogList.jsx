@@ -3,75 +3,102 @@ import BlogCard from "./BlogCard";
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  // ✅ DUMMY DATA (backend se baad me replace kar dena)
-  const dummyBlogs = [
-    {
-      id: 1,
-      title: "5 Healthy Breakfast Ideas For Busy People",
-      description:
-        "Start your day with energy. These quick breakfast ideas are healthy, simple and tasty.",
-      category: "Nutrition",
-      date: "Feb 02, 2026",
-      image:
-        "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=900&q=80",
-    },
-    {
-      id: 2,
-      title: "Weight Loss Tips That Actually Work",
-      description:
-        "No crash diets. Learn sustainable habits that help you lose weight without stress.",
-      category: "Fitness",
-      date: "Feb 01, 2026",
-      image:
-        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80",
-    },
-    {
-      id: 3,
-      title: "Best Foods For Glowing Skin & Strong Immunity",
-      description:
-        "Your skin reflects your diet. Here are the best foods for clear skin and immunity boost.",
-      category: "Lifestyle",
-      date: "Jan 30, 2026",
-      image:
-        "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=900&q=80",
-    },
-    {
-      id: 4,
-      title: "Healthy Dinner Plans You Can Follow Daily",
-      description:
-        "Simple dinner routine that helps you stay fit, light, and active throughout the week.",
-      category: "Diet Plan",
-      date: "Jan 28, 2026",
-      image:
-        "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=900&q=80",
-    },
-    {
-      id: 5,
-      title: "What To Eat Pre & Post Workout",
-      description:
-        "Best pre/post workout food choices to improve energy, strength and muscle recovery.",
-      category: "Workout",
-      date: "Jan 25, 2026",
-      image:
-        "https://images.unsplash.com/photo-1599058917212-d750089bc07a?auto=format&fit=crop&w=900&q=80",
-    },
-    {
-      id: 6,
-      title: "Hydration Guide: How Much Water You Need",
-      description:
-        "Water is the key. Learn how hydration helps your body function better and faster.",
-      category: "Health",
-      date: "Jan 22, 2026",
-      image:
-        "https://images.unsplash.com/photo-1529059997568-3d847b1154f0?auto=format&fit=crop&w=900&q=80",
-    },
-  ];
+  const blogsPerPage = 6;
+  const API_BASE_URL = "https://sz02nvjz-5000.inc1.devtunnels.ms/api";
 
   useEffect(() => {
-    setBlogs(dummyBlogs);
+    fetchBlogs();
   }, []);
 
+  // Fetch blogs (public - no auth needed)
+  const fetchBlogs = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const response = await fetch(`${API_BASE_URL}/blogs`);
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch blogs");
+      }
+
+      const result = await response.json();
+
+      if (result.success && result.data) {
+        const formattedBlogs = result.data.map((blog) => ({
+          id: blog._id || blog.id,
+          title: blog.title,
+          description: blog.content.substring(0, 120) + "...",
+          category: blog.category || "Health",
+          date: blog.formattedDate,
+          image: blog.coverImage,
+        }));
+
+        setBlogs(formattedBlogs);
+      }
+    } catch (err) {
+      setError(err.message);
+      console.error("Error fetching blogs:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Pagination
+  const indexOfLastBlog = currentPage * blogsPerPage;
+  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+  const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
+  const totalPages = Math.ceil(blogs.length / blogsPerPage);
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  // Loading state
+  if (loading) {
+    return (
+      <section className="w-full bg-white py-20">
+        <div className="max-w-[1200px] mx-auto px-4">
+          <div className="flex justify-center items-center min-h-[400px]">
+            <div className="text-center">
+              <div className="w-16 h-16 border-4 border-[#86b817] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <p className="text-[#666] text-lg">Loading blogs...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <section className="w-full bg-white py-20">
+        <div className="max-w-[1200px] mx-auto px-4">
+          <div className="flex justify-center items-center min-h-[400px]">
+            <div className="text-center">
+              <p className="text-red-500 text-lg mb-4">Error: {error}</p>
+              <button
+                onClick={fetchBlogs}
+                className="px-6 py-3 bg-[#86b817] text-white font-semibold rounded hover:bg-[#75a015] transition"
+              >
+                Retry
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Public Blog View (Clean - No Admin Controls)
   return (
     <section className="w-full bg-white py-20">
       <div className="max-w-[1200px] mx-auto px-4">
@@ -86,30 +113,58 @@ const BlogList = () => {
         </h2>
 
         {/* Blog Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogs.map((blog) => (
-            <BlogCard key={blog.id} blog={blog} />
-          ))}
-        </div>
+        {currentBlogs.length > 0 ? (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {currentBlogs.map((blog) => (
+                <BlogCard key={blog.id} blog={blog} />
+              ))}
+            </div>
 
-        {/* Pagination Dummy UI */}
-        <div className="flex justify-center items-center gap-3 mt-14">
-          <button className="w-12 h-12 bg-[#f7f7f7] text-[#222] font-semibold hover:bg-[#86b817] hover:text-white transition">
-            1
-          </button>
-          <button className="w-12 h-12 bg-[#f7f7f7] text-[#222] font-semibold hover:bg-[#86b817] hover:text-white transition">
-            2
-          </button>
-          <button className="w-12 h-12 bg-[#f7f7f7] text-[#222] font-semibold hover:bg-[#86b817] hover:text-white transition">
-            3
-          </button>
-          <button className="w-12 h-12 bg-[#f7f7f7] text-[#222] font-semibold hover:bg-[#86b817] hover:text-white transition">
-            →
-          </button>
-        </div>
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center gap-3 mt-14">
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="w-12 h-12 bg-[#f7f7f7] text-[#222] font-semibold hover:bg-[#86b817] hover:text-white transition disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  ←
+                </button>
+
+                {[...Array(totalPages)].map((_, index) => {
+                  const page = index + 1;
+                  return (
+                    <button
+                      key={page}
+                      onClick={() => handlePageChange(page)}
+                      className={`w-12 h-12 font-semibold transition ${
+                        currentPage === page
+                          ? "bg-[#86b817] text-white"
+                          : "bg-[#f7f7f7] text-[#222] hover:bg-[#86b817] hover:text-white"
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  );
+                })}
+
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className="w-12 h-12 bg-[#f7f7f7] text-[#222] font-semibold hover:bg-[#86b817] hover:text-white transition disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  →
+                </button>
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="text-center py-20">
+            <p className="text-[#666] text-xl">No blogs found</p>
+          </div>
+        )}
       </div>
-
-    
     </section>
   );
 };

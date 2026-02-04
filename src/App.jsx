@@ -7,6 +7,9 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Blog from "./pages/Blog";
 import ScrollToTop from "./components/ScrollToTop";
+import AdminLogin from "./auth/AdminLogin";
+import AdminDashboard from "./components/AdminDashboard";
+
 
 const App = () => {
   return (
@@ -15,6 +18,10 @@ const App = () => {
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
+        {/* Admin Routes */}
+        <Route path="/blog/admin/login" element={<AdminLogin />} />
+        <Route path="/blog/admin/dashboard" element={<AdminDashboard />} />
+
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />

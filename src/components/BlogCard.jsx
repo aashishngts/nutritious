@@ -4,11 +4,11 @@ const BlogCard = ({ blog }) => {
   return (
     <div className="bg-[#f7f7f7] overflow-hidden">
       {/* Image */}
-      <div className="w-full h-[230px] overflow-hidden">
+      <div className="w-full h-[230px]   overflow-hidden">
         <img
           src={blog.image}
           alt={blog.title}
-          className="w-full h-full object-cover hover:scale-105 transition duration-300"
+          className="w-full h-full object-contain  hover:scale-105 transition duration-300"
         />
       </div>
 
