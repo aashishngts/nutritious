@@ -78,7 +78,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative w-full h-[70vh] sm:h-[80vh] md:h-[85vh] lg:h-[90vh] xl:h-screen overflow-hidden">
+    <section className="mt-20 relative w-full h-[70vh] sm:h-[80vh] md:h-[85vh] lg:h-[90vh] xl:h-screen overflow-hidden">
       {/* Multiple backgrounds with crossfade */}
       {slides.map((slide, index) => (
         <div

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../context/baseApi";
 
 const AdminLogin = () => {
   const [username, setUserName] = useState("");
@@ -7,8 +8,9 @@ const AdminLogin = () => {
   const [loginError, setLoginError] = useState("");
   const [loginLoading, setLoginLoading] = useState(false);
   const navigate = useNavigate();
+  
 
-  const API_BASE_URL = "https://sz02nvjz-5000.inc1.devtunnels.ms";
+   const API_BASE_URL =`${API_URL}`;
 
   // Check if already logged in
   useEffect(() => {
@@ -46,7 +48,7 @@ const AdminLogin = () => {
         if (role === "admin") {
           localStorage.setItem("adminToken", token);
           localStorage.setItem("userRole", role);
-          navigate("/blog/admin/dashboard");
+          navigate("/blogs/admin/dashboard");
         } else {
           setLoginError("Access denied. Admin credentials required.");
         }
@@ -62,13 +64,11 @@ const AdminLogin = () => {
   };
 
   return (
-    <section className="w-full bg-gradient-to-br from-[#86b817] to-[#75a015] py-20 min-h-screen flex items-center justify-center">
+    <section className="w-full bg-linear-to-br from-[#55aa7e] to-[#55aa7e] py-20 min-h-screen flex items-center justify-center">
       <div className="max-w-md w-full mx-auto px-4">
         <div className="bg-white border-2 border-[#f0f0f0] rounded-xl p-8 shadow-2xl">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-br from-[#86b817] to-[#75a015] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <span className="text-4xl">🔐</span>
-            </div>
+            
             <h2 className="text-4xl font-extrabold text-[#222] mb-2">
               Admin Portal
             </h2>

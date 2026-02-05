@@ -1,0 +1,1 @@
+export const API_URL = "https://opened-rental-ethics-entire.trycloudflare.com";

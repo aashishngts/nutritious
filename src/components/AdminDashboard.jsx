@@ -11,14 +11,14 @@ const AdminDashboard = () => {
 
     // If not logged in as admin, redirect to login
     if (!token || role !== "admin") {
-      navigate("/blog/admin/login");
+      navigate("/blogs/admin/login");
     }
   }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
     localStorage.removeItem("userRole");
-    navigate("/blog");
+    navigate("/blogs");
   };
 
   return <AdminBlogPanel onLogout={handleLogout} />;

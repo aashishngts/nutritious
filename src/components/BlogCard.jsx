@@ -1,14 +1,30 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
+
+
 
 const BlogCard = ({ blog }) => {
+  const navigate = useNavigate();
+
+  function handleClick({ data }) {
+      window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+    navigate("/blog", {
+      state: { data }
+    })
+
+  }
+
   return (
-    <div className="bg-[#f7f7f7] overflow-hidden">
+    <div className="bg-[#f7f7f7] overflow-hidden rounded-xl">
       {/* Image */}
-      <div className="w-full h-[230px]   overflow-hidden">
+      <div className="h-56 overflow-hidden ">
         <img
           src={blog.image}
           alt={blog.title}
-          className="w-full h-full object-contain  hover:scale-105 transition duration-300"
+          className="w-full h-full object-cover  transition-transform duration-500 hover:scale-105"
         />
       </div>
 
@@ -28,7 +44,7 @@ const BlogCard = ({ blog }) => {
 
         <div className="flex items-center justify-between text-[#777] text-[13px]">
           <span>{blog.date}</span>
-          <button className="text-[#86b817] uppercase font-semibold underline underline-offset-4 tracking-[2px]">
+          <button onClick={() => handleClick({ data: blog })} className="text-[#86b817] uppercase font-semibold underline underline-offset-4 tracking-[2px] cursor-pointer">
             Read More
           </button>
         </div>

@@ -14,7 +14,7 @@ const BlogBanner = () => {
       <div className="relative max-w-[1200px] mx-auto px-4 h-full flex items-center">
         <div>
           <h1 className="text-[58px] md:text-[72px] font-extrabold text-[#222] leading-tight">
-            Blog
+            Blogs
           </h1>
 
           

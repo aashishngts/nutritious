@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import BlogCard from "./BlogCard";
+import { API_URL } from "../context/baseApi";
 
 const AdminBlogPanel = ({ onLogout }) => {
   const [blogs, setBlogs] = useState([]);
@@ -17,7 +18,7 @@ const AdminBlogPanel = ({ onLogout }) => {
   const [formLoading, setFormLoading] = useState(false);
 
   const blogsPerPage = 6;
-  const API_BASE_URL = "https://sz02nvjz-5000.inc1.devtunnels.ms/api";
+   const API_BASE_URL =`${API_URL}/api`;
 
   useEffect(() => {
     fetchBlogs();

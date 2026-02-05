@@ -3,7 +3,7 @@ import React from "react";
 const AboutBanner = () => {
   return (
     <section
-      className="max-w-full h-[300px] md:h-[360px] bg-cover bg-no-repeat bg-center relative"
+      className="max-w-full h-[300px] md:h-[360px] bg-cover bg-no-repeat bg-center relative mt-20"
       style={{
         backgroundImage:
           "url(https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1800&q=80)",

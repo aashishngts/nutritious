@@ -27,7 +27,7 @@ const About = () => {
             <p className="text-green-500 font-semibold mb-4 uppercase tracking-wide text-sm">
               ABOUT NUTRITIUS
             </p>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            <h2 className="md:text-4xl text-3xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               Raksha Goyal
             </h2>
             <h4 className='mb-2'>M.Sc. Foods and Nutrition</h4>

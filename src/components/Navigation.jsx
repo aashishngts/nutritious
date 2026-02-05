@@ -54,7 +54,7 @@ const Navigation = () => {
               Services
             </Link>
 
-            <Link to="/blog"
+            <Link to="/blogs"
               className="text-gray-700 hover:text-green-500 transition-colors duration-200 font-medium"
             >
               Blog

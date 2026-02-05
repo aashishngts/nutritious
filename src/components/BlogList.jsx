@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import BlogCard from "./BlogCard";
+import {API_URL} from "../context/baseApi"
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
@@ -8,7 +9,7 @@ const BlogList = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const blogsPerPage = 6;
-  const API_BASE_URL = "https://sz02nvjz-5000.inc1.devtunnels.ms/api";
+  const API_BASE_URL =`${API_URL}/api`;
 
   useEffect(() => {
     fetchBlogs();
@@ -21,7 +22,8 @@ const BlogList = () => {
       setError(null);
 
       const response = await fetch(`${API_BASE_URL}/blogs`);
-
+      
+ 
       if (!response.ok) {
         throw new Error("Failed to fetch blogs");
       }
