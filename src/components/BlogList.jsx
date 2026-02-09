@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import BlogCard from "./BlogCard";
-import {API_URL} from "../context/baseApi"
+import { API_URL } from "../context/baseApi"
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
@@ -9,7 +9,10 @@ const BlogList = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const blogsPerPage = 6;
-  const API_BASE_URL =`${API_URL}/api`;
+  const API_BASE_URL = `${API_URL}/api`;
+  console.log("API_URL:", API_URL);
+console.log("Final URL:", `${API_BASE_URL}/blogs`);
+
 
   useEffect(() => {
     fetchBlogs();
@@ -21,27 +24,31 @@ const BlogList = () => {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(`${API_BASE_URL}/blogs`);
-      
- 
+      const response = await fetch(`${API_BASE_URL}/blogs`
+      );
+
+
       if (!response.ok) {
         throw new Error("Failed to fetch blogs");
       }
 
       const result = await response.json();
 
-      if (result.success && result.data) {
-        const formattedBlogs = result.data.map((blog) => ({
-          id: blog._id || blog.id,
-          title: blog.title,
-          description: blog.content.substring(0, 120) + "...",
-          category: blog.category || "Health",
-          date: blog.formattedDate,
-          image: blog.coverImage,
-        }));
-
-        setBlogs(formattedBlogs);
+      if (result.success) {
+        setBlogs(
+          result.data?.map((blog) => ({
+            id: blog._id || blog.id,
+            title: blog.title,
+            description: blog.content?.substring(0, 120) + "...",
+            category: blog.category || "Health",
+            date: blog.formattedDate,
+            image: blog.coverImage,
+          })) || []
+        );
+      } else {
+        setError(result.message || "Failed to fetch blogs");
       }
+
     } catch (err) {
       setError(err.message);
       console.error("Error fetching blogs:", err);
@@ -110,7 +117,7 @@ const BlogList = () => {
           Latest Articles
         </p>
 
-        <h2 className="text-[56px] md:text-[64px] font-extrabold text-[#222] text-center leading-[1.1] mb-14">
+        <h2 className="text-[56px] md:text-[64px] font-bold text-[#222] text-center leading-[1.1] mb-14">
           Health & Nutrition Blog
         </h2>
 
@@ -140,11 +147,10 @@ const BlogList = () => {
                     <button
                       key={page}
                       onClick={() => handlePageChange(page)}
-                      className={`w-12 h-12 font-semibold transition ${
-                        currentPage === page
+                      className={`w-12 h-12 font-semibold transition ${currentPage === page
                           ? "bg-[#86b817] text-white"
                           : "bg-[#f7f7f7] text-[#222] hover:bg-[#86b817] hover:text-white"
-                      }`}
+                        }`}
                     >
                       {page}
                     </button>

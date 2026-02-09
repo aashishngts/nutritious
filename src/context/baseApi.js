@@ -1,1 +1,1 @@
-export const API_URL = "https://opened-rental-ethics-entire.trycloudflare.com";
+export const API_URL = "https://nutritus.onrender.com";

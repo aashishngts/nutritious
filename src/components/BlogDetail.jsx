@@ -1,16 +1,28 @@
 import React from "react";
 import 'animate.css';
 import { useLocation } from "react-router-dom";
+import { API_URL } from "../context/baseApi";
 
 function BlogDetail() {
     const location = useLocation();
     const { data } = location.state || {};
+    const getImageUrl = (imagePath) => {
+    if (!imagePath) return '/placeholder-image.jpg'; // Fallback image
+
+    // If image path already starts with http/https, return as is
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+      return imagePath;
+    }
+
+    // Otherwise, prepend the base URL
+    return `${API_URL}${imagePath}`;
+  };
     return (
         <>
             <div className="mt-20">
                 <div className="w-[90%] h-[600px] mx-auto overflow-hidden relative animate-fadeup animate_animated animate_fadeInUpBig">
                     <img
-                        src={data.image}
+                        src={getImageUrl(data.image)}
                         alt={data.title}
                         className=" w-full h-full object-cover object-top  rounded-2xl "
                     />

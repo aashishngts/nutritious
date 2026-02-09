@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import BlogCard from "./BlogCard";
 import { API_URL } from "../context/baseApi";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const AdminBlogPanel = ({ onLogout }) => {
   const [blogs, setBlogs] = useState([]);
@@ -16,9 +18,13 @@ const AdminBlogPanel = ({ onLogout }) => {
     category: "",
   });
   const [formLoading, setFormLoading] = useState(false);
+  
+  // New states for image upload
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
 
   const blogsPerPage = 6;
-   const API_BASE_URL =`${API_URL}/api`;
+  const API_BASE_URL = `${API_URL}/api`;
 
   useEffect(() => {
     fetchBlogs();
@@ -71,6 +77,34 @@ const AdminBlogPanel = ({ onLogout }) => {
     }
   };
 
+  // Handle image file selection
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        alert("❌ Image size should be less than 5MB");
+        return;
+      }
+
+      // Validate file type
+      const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+      if (!validTypes.includes(file.type)) {
+        alert("❌ Please upload a valid image file (JPG, PNG, GIF, WEBP)");
+        return;
+      }
+
+      setImageFile(file);
+      
+      // Create preview
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   // Add new blog
   const handleAddBlog = async (e) => {
     e.preventDefault();
@@ -79,13 +113,24 @@ const AdminBlogPanel = ({ onLogout }) => {
     try {
       const token = localStorage.getItem("adminToken");
 
+      // Create FormData to send image file
+      const formData = new FormData();
+      formData.append('title', blogForm.title);
+      formData.append('content', blogForm.content);
+      formData.append('category', blogForm.category);
+      
+      // Add image file if selected
+      if (imageFile) {
+        formData.append('coverImage', imageFile);
+      }
+
       const response = await fetch(`${API_BASE_URL}/blogs`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+          // Don't set Content-Type - browser will set it with boundary for FormData
         },
-        body: JSON.stringify(blogForm),
+        body: formData,
       });
 
       const result = await response.json();
@@ -93,6 +138,8 @@ const AdminBlogPanel = ({ onLogout }) => {
       if (response.ok && result.success) {
         alert("✅ Blog added successfully!");
         setBlogForm({ title: "", content: "", coverImage: "", category: "" });
+        setImageFile(null);
+        setImagePreview('');
         fetchBlogs();
         setShowAdminPanel(false);
       } else {
@@ -113,13 +160,23 @@ const AdminBlogPanel = ({ onLogout }) => {
     try {
       const token = localStorage.getItem("adminToken");
 
+      // Create FormData to send image file
+      const formData = new FormData();
+      formData.append('title', blogForm.title);
+      formData.append('content', blogForm.content);
+      formData.append('category', blogForm.category);
+      
+      // Add image file if new one selected
+      if (imageFile) {
+        formData.append('coverImage', imageFile);
+      }
       const response = await fetch(`${API_BASE_URL}/blogs/${editingBlog.id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+          // Don't set Content-Type - browser will set it with boundary for FormData
         },
-        body: JSON.stringify(blogForm),
+        body: formData,
       });
 
       const result = await response.json();
@@ -128,6 +185,8 @@ const AdminBlogPanel = ({ onLogout }) => {
         alert("✅ Blog updated successfully!");
         setBlogForm({ title: "", content: "", coverImage: "", category: "" });
         setEditingBlog(null);
+        setImageFile(null);
+        setImagePreview('');
         fetchBlogs();
         setShowAdminPanel(false);
       } else {
@@ -178,6 +237,8 @@ const AdminBlogPanel = ({ onLogout }) => {
       coverImage: blog.image,
       category: blog.category,
     });
+    setImageFile(null);
+    setImagePreview('');
     setShowAdminPanel(true);
   };
 
@@ -185,7 +246,16 @@ const AdminBlogPanel = ({ onLogout }) => {
   const handleCancelEdit = () => {
     setEditingBlog(null);
     setBlogForm({ title: "", content: "", coverImage: "", category: "" });
+    setImageFile(null);
+    setImagePreview('');
     setShowAdminPanel(false);
+  };
+
+  // Remove selected image
+  const handleRemoveImage = () => {
+    setImageFile(null);
+    setImagePreview('');
+    setBlogForm({ ...blogForm, coverImage: '' });
   };
 
   // Pagination
@@ -220,6 +290,7 @@ const AdminBlogPanel = ({ onLogout }) => {
             </div>
 
             <form onSubmit={editingBlog ? handleUpdateBlog : handleAddBlog}>
+              {/* Title */}
               <div className="mb-5">
                 <label className="block text-[#222] font-semibold mb-2">
                   Title
@@ -236,6 +307,7 @@ const AdminBlogPanel = ({ onLogout }) => {
                 />
               </div>
 
+              {/* Category */}
               <div className="mb-5">
                 <label className="block text-[#222] font-semibold mb-2">
                   Category
@@ -251,46 +323,88 @@ const AdminBlogPanel = ({ onLogout }) => {
                 />
               </div>
 
+              {/* Image Upload */}
               <div className="mb-5">
                 <label className="block text-[#222] font-semibold mb-2">
-                  Cover Image URL
+                  Cover Image
                 </label>
                 <input
-                  type="url"
-                  value={blogForm.coverImage}
-                  onChange={(e) =>
-                    setBlogForm({ ...blogForm, coverImage: e.target.value })
-                  }
-                  placeholder="https://example.com/image.jpg"
-                  required
-                  className="w-full px-4 py-3 border-2 border-[#e0e0e0] rounded focus:outline-none focus:border-[#86b817] transition"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="w-full px-4 py-3 border-2 border-[#e0e0e0] rounded focus:outline-none focus:border-[#86b817] transition file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-[#86b817] file:text-white file:cursor-pointer hover:file:bg-[#75a015]"
                 />
-                {blogForm.coverImage && (
-                  <img
-                    src={blogForm.coverImage}
-                    alt="Preview"
-                    className="mt-3 w-full h-48 object-cover rounded"
-                    onError={(e) => (e.target.style.display = "none")}
-                  />
+
+                {/* Image Preview */}
+                {(imagePreview || blogForm.coverImage) && (
+                  <div className="mt-3 relative">
+                    <img
+                      src={imagePreview || blogForm.coverImage}
+                      alt="Preview"
+                      className="w-full h-48 object-cover rounded"
+                      onError={(e) => {
+                        e.target.style.display = "none";
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={handleRemoveImage}
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-600 transition"
+                    >
+                      ✕
+                    </button>
+                  </div>
                 )}
+
+                <p className="text-xs text-gray-500 mt-2">
+                  Supported formats: JPG, PNG, GIF, WEBP (Max 5MB)
+                </p>
               </div>
 
+              {/* CKEditor for Content */}
               <div className="mb-6">
                 <label className="block text-[#222] font-semibold mb-2">
                   Content
                 </label>
-                <textarea
-                  value={blogForm.content}
-                  onChange={(e) =>
-                    setBlogForm({ ...blogForm, content: e.target.value })
-                  }
-                  placeholder="Write your blog content here..."
-                  required
-                  rows="10"
-                  className="w-full px-4 py-3 border-2 border-[#e0e0e0] rounded focus:outline-none focus:border-[#86b817] transition resize-none"
-                />
+                <div className="border-2 border-[#e0e0e0] rounded focus-within:border-[#86b817] transition">
+                  <CKEditor
+                    editor={ClassicEditor}
+                    data={blogForm.content}
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      setBlogForm({ ...blogForm, content: data });
+                    }}
+                    config={{
+                      toolbar: [
+                        'heading',
+                        '|',
+                        'bold',
+                        'italic',
+                        'link',
+                        'bulletedList',
+                        'numberedList',
+                        '|',
+                        'blockQuote',
+                        'insertTable',
+                        '|',
+                        'undo',
+                        'redo'
+                      ],
+                      placeholder: 'Write your blog content here...',
+                      heading: {
+                        options: [
+                          { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                          { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                          { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                          { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' }
+                        ]
+                      }
+                    }}
+                  />
+                </div>
               </div>
 
+              {/* Submit Buttons */}
               <div className="flex gap-3">
                 <button
                   type="submit"
@@ -369,7 +483,6 @@ const AdminBlogPanel = ({ onLogout }) => {
         {/* Admin Header */}
         <div className="flex justify-between items-center mb-8 mt-8 bg-gradient-to-r from-[#86b817] to-[#75a015] p-6 rounded-lg shadow-lg">
           <div className="flex items-center gap-4">
-            
             <div>
               <h3 className="text-2xl font-extrabold text-white">
                 Admin Dashboard
@@ -441,13 +554,13 @@ const AdminBlogPanel = ({ onLogout }) => {
                       onClick={() => handleEditClick(blog)}
                       className="bg-blue-500 text-white px-3 py-2 rounded text-sm font-semibold hover:bg-blue-600 transition shadow-lg"
                     >
-                        Edit
+                      Edit
                     </button>
                     <button
                       onClick={() => handleDeleteBlog(blog.id)}
                       className="bg-red-500 text-white px-3 py-2 rounded text-sm font-semibold hover:bg-red-600 transition shadow-lg"
                     >
-                     Delete
+                      Delete
                     </button>
                   </div>
                 </div>

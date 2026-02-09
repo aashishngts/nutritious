@@ -103,7 +103,7 @@ const Hero = () => {
             {slides[current].tag}
           </div>
 
-          <h1 className="mb-5 md:mb-6 text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+          <h1 className="mb-5 md:mb-6 text-2xl sm:text-3xl md:text-3xl lg:text-5xl font-bold leading-tight text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
             {slides[current].title}
           </h1>
 
