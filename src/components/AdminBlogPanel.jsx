@@ -124,6 +124,8 @@ const AdminBlogPanel = ({ onLogout }) => {
         formData.append('coverImage', imageFile);
       }
 
+
+      
       const response = await fetch(`${API_BASE_URL}/blogs`, {
         method: "POST",
         headers: {
@@ -169,7 +171,11 @@ const AdminBlogPanel = ({ onLogout }) => {
       // Add image file if new one selected
       if (imageFile) {
         formData.append('coverImage', imageFile);
+      } else if (blogForm.coverImage) {
+        // Keep existing image URL if no new file
+        formData.append('existingCoverImage', blogForm.coverImage);
       }
+
       const response = await fetch(`${API_BASE_URL}/blogs/${editingBlog.id}`, {
         method: "PUT",
         headers: {
