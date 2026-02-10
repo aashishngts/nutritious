@@ -1,14 +1,28 @@
 import { useNavigate } from "react-router-dom";
+<<<<<<< Updated upstream
 import { API_URL } from "../context/baseApi";
 import DOMPurify from "dompurify";
+=======
+import {API_URL} from "../context/baseApi"
+
+
+>>>>>>> Stashed changes
 
 const BlogCard = ({ blog }) => {
   const navigate = useNavigate();
 
+<<<<<<< Updated upstream
   const handleClick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     navigate("/blog", { state: { data: blog } });
   };
+=======
+  function handleClick({ data }) {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+>>>>>>> Stashed changes
 
   // Optimized image URL helper
   const getImageUrl = (imagePath) => {
@@ -24,7 +38,15 @@ const BlogCard = ({ blog }) => {
       {/* Image */}
       <div className="h-56 overflow-hidden">
         <img
+<<<<<<< Updated upstream
           src={getImageUrl(blog.image)}
+=======
+          src={blog.image.startsWith('http')
+            ? blog.image
+            : `${API_URL}${blog.image}`
+          }
+          // src={blog.image}
+>>>>>>> Stashed changes
           alt={blog.title}
           loading="lazy"
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"

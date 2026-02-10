@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import BlogCard from "./BlogCard";
 import { API_URL } from "../context/baseApi";
+<<<<<<< Updated upstream
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+=======
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
+>>>>>>> Stashed changes
 
 const AdminBlogPanel = ({ onLogout }) => {
   const [blogs, setBlogs] = useState([]);
@@ -372,6 +378,7 @@ const AdminBlogPanel = ({ onLogout }) => {
                 <label className="block text-[#222] font-semibold mb-2">
                   Content
                 </label>
+<<<<<<< Updated upstream
                 <div className="border-2 border-[#e0e0e0] rounded focus-within:border-[#86b817] transition">
                   <CKEditor
                     editor={ClassicEditor}
@@ -408,6 +415,18 @@ const AdminBlogPanel = ({ onLogout }) => {
                     }}
                   />
                 </div>
+=======
+
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={blogForm.content}
+                  onChange={(event, editor) => {
+                    const data = editor.getData();
+                    setBlogForm({ ...blogForm, content: data });
+                  }}
+                />
+
+>>>>>>> Stashed changes
               </div>
 
               {/* Submit Buttons */}
@@ -420,8 +439,8 @@ const AdminBlogPanel = ({ onLogout }) => {
                   {formLoading
                     ? "Saving..."
                     : editingBlog
-                    ? "Update Blog"
-                    : "Add Blog"}
+                      ? "Update Blog"
+                      : "Add Blog"}
                 </button>
                 <button
                   type="button"
@@ -489,6 +508,10 @@ const AdminBlogPanel = ({ onLogout }) => {
         {/* Admin Header */}
         <div className="flex justify-between items-center mb-8 mt-8 bg-gradient-to-r from-[#86b817] to-[#75a015] p-6 rounded-lg shadow-lg">
           <div className="flex items-center gap-4">
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             <div>
               <h3 className="text-2xl font-extrabold text-white">
                 Admin Dashboard
@@ -590,11 +613,10 @@ const AdminBlogPanel = ({ onLogout }) => {
                     <button
                       key={page}
                       onClick={() => handlePageChange(page)}
-                      className={`w-12 h-12 font-semibold transition ${
-                        currentPage === page
+                      className={`w-12 h-12 font-semibold transition ${currentPage === page
                           ? "bg-[#86b817] text-white"
                           : "bg-[#f7f7f7] text-[#222] hover:bg-[#86b817] hover:text-white"
-                      }`}
+                        }`}
                     >
                       {page}
                     </button>

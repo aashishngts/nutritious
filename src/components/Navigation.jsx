@@ -37,37 +37,37 @@ const Navigation = () => {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               to="/"
-              className="text-gray-700 hover:text-green-500 transition-colors duration-200 font-medium"
+              className="text-gray-900 hover:text-green-500 transition-colors duration-200 font-medium"
             >
               Home
             </Link>
 
             <Link to="/about"
-              className="text-gray-700 hover:text-green-500 transition-colors duration-200 font-medium"
+              className="text-gray-900 hover:text-green-500 transition-colors duration-200 font-medium"
             >
               About Us
             </Link>
 
             <Link to="/services"
-              className="text-gray-700 hover:text-green-500 transition-colors duration-200 font-medium"
+              className="text-gray-900 hover:text-green-500 transition-colors duration-200 font-medium"
             >
               Services
             </Link>
 
             <Link to="/blogs"
-              className="text-gray-700 hover:text-green-500 transition-colors duration-200 font-medium"
+              className="text-gray-900 hover:text-green-500 transition-colors duration-200 font-medium"
             >
               Blog
             </Link>
 
             <Link
               to="/contact"
-              className="text-gray-700 hover:text-green-500 transition-colors duration-200 font-medium"
+              className="text-gray-900 hover:text-green-500 transition-colors duration-200 font-medium"
             >
               Contact Us
             </Link>
 
-            <button className="bg-green-500 text-white px-6 py-2.5 rounded hover:bg-green-600 transition-all duration-200 transform hover:scale-105 flex items-center space-x-2 shadow-md hover:shadow-lg">
+            <button className="bg-green-500 text-white px-6 py-2.5  hover:bg-green-600 transition-all duration-200 transform hover:scale-105 flex items-center space-x-2 shadow-md hover:shadow-lg rounded-xl">
               <svg
                 className="w-4 h-4"
                 fill="currentColor"
@@ -85,7 +85,7 @@ const Navigation = () => {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <svg
-              className="w-6 h-6 text-gray-700"
+              className="w-6 h-6 text-gray-900"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -115,7 +115,7 @@ const Navigation = () => {
             <div className="flex flex-col space-y-4">
               <Link
                 to="/"
-                className="text-gray-700 hover:text-green-500 transition-colors font-medium"
+                className="text-gray-900 hover:text-green-500 transition-colors font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Home
@@ -123,7 +123,7 @@ const Navigation = () => {
 
               <a
                 href="#about-us"
-                className="text-gray-700 hover:text-green-500 transition-colors font-medium"
+                className="text-gray-900 hover:text-green-500 transition-colors font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 About Us
@@ -131,23 +131,29 @@ const Navigation = () => {
 
               <a
                 href="#services"
-                className="text-gray-700 hover:text-green-500 transition-colors font-medium"
+                className="text-gray-900 hover:text-green-500 transition-colors font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Services
               </a>
 
-              <a
+              {/* <a
                 href="#blog"
-                className="text-gray-700 hover:text-green-500 transition-colors font-medium"
+                className="text-gray-900 hover:text-green-500 transition-colors font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Blog
-              </a>
+              </a> */}
+
+               <Link to="/blogs"
+              className="text-gray-900 hover:text-green-500 transition-colors duration-200 font-medium"
+            >
+              Blog
+            </Link>
 
               <Link
                 to="/contact"
-                className="text-gray-700 hover:text-green-500 transition-colors font-medium"
+                className="text-gray-900 hover:text-green-500 transition-colors font-medium "
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Contact Us
