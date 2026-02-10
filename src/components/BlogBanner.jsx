@@ -13,13 +13,8 @@ const BlogBanner = () => {
 
       <div className="relative max-w-[1200px] mx-auto px-4 h-full flex items-center max-[600px]:justify-center">
         <div>
-<<<<<<< Updated upstream
           <h1 className="text-[58px] md:text-[72px] font-bold text-[#222] leading-tight">
             Blogs
-=======
-          <h1 className=" align-bottom text-[45px] sm:text-[58px] md:text-[72px] font-bold text-[#222] leading-tight">
-            Blogs Details
->>>>>>> Stashed changes
           </h1>
 
           
