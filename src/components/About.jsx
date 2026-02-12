@@ -49,7 +49,7 @@ export default function About() {
   </p>
 
   {/* Heading */}
-  <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-5">
+  <h2 className="text-2xl lg:text-5xl font-bold text-gray-900 leading-tight mb-5">
     Improving Life Through{" "}
     <span className="text-[#138f44]">Healthy Living</span>
   </h2>

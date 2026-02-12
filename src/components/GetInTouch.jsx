@@ -2,7 +2,7 @@ import React from "react";
 
 const GetInTouch = () => {
   return (
-    <section className="relative w-full py-28 bg-gradient-to-b from-white to-[#f6fbf7] overflow-hidden">
+    <section className="relative w-full md:py-28 py-14 bg-gradient-to-b from-white to-[#f6fbf7] overflow-hidden">
       {/* Soft Background Glow */}
       <div className="absolute -top-32 right-0 w-[400px] h-[400px] bg-[#86b817]/10 rounded-full blur-3xl"></div>
 
@@ -10,11 +10,11 @@ const GetInTouch = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-stretch">
           {/* Left Image */}
           <div className="relative">
-            <div className="absolute -top-6 -left-6 w-full h-full border-4 border-[#86b817]/20 rounded-3xl"></div>
+            <div className="hidden md:block absolute -top-6 -left-6 w-full h-full border-4 border-[#86b817]/20 rounded-3xl"></div>
             <img
               src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=1200&q=80"
               alt="Get in touch"
-              className="relative w-full h-[560px] object-cover rounded-3xl shadow-2xl"
+              className="relative w-full md:h-[560px] h-100 object-cover rounded-3xl shadow-2xl"
             />
           </div>
 

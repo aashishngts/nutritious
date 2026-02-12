@@ -31,7 +31,7 @@ export default function AboutIntro() {
             About Nutritius
           </p>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+          <h2 className="text-2xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
             Improving Life Through{" "}
             <span className="relative inline-block">
               Healthy Living

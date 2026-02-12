@@ -31,7 +31,7 @@ export default function CTA() {
               Free Consultation
             </p>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
               Get Your Free <span className="text-[#86efac]">Health Consulting</span>
             </h2>
 

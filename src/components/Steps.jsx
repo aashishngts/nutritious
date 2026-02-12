@@ -22,7 +22,7 @@ export default function Steps() {
             How To Start
           </p>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+          <h2 className="text-2xl md:text-5xl font-bold text-gray-900 leading-tight">
             It's Easy To{" "}
             <span className="relative inline-block">
               Start Today

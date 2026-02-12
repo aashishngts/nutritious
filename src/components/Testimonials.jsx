@@ -29,11 +29,11 @@ export default function Testimonials() {
 
       <div className="relative max-w-6xl mx-auto px-6">
         {/* Heading */}
-        <div className="text-center mb-20">
+        <div className="text-center md:mb-20 mb-10">
           <p className="text-[#138f44] font-semibold mb-3 uppercase tracking-widest text-sm">
             Testimonials
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+          <h2 className="text-2xl md:text-5xl font-bold text-gray-900">
             What Our{" "}
             <span className="relative inline-block">
               Happy Clients Say

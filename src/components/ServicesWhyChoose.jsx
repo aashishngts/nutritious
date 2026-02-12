@@ -35,7 +35,7 @@ const ServicesWhyChoose = () => {
             Why Choose Us
           </p>
 
-          <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+          <h2 className="md:text-5xl text-2xl  font-extrabold text-gray-900 leading-tight mb-6">
             Healthy Results With <br />
             <span className="text-[#138f44]">Smart Nutrition</span>
           </h2>

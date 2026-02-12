@@ -12,7 +12,7 @@ const AboutFeatureProjects = () => {
               Explore Our Projects
             </p>
 
-            <h2 className="text-[58px] font-extrabold text-[#222] leading-[1.05] mb-5">
+            <h2 className="md:text-5xl text-2xl font-extrabold text-[#222] leading-[1.05] mb-5 ">
               Our Feature <br /> Projects
             </h2>
 
