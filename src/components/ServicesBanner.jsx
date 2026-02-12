@@ -3,7 +3,7 @@ import React from "react";
 const ServicesBanner = () => {
   return (
     <section
-      className="relative w-full h-[280px] md:h-[340px] bg-cover bg-center flex items-center"
+      className="relative  w-full h-[280px] md:h-[340px] bg-cover bg-center flex items-center"
       style={{
         backgroundImage:
           "url(https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1800&q=80)",

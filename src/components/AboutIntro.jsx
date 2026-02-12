@@ -1,5 +1,6 @@
 import React from "react";
-
+import { FaAppleAlt, FaDumbbell } from "react-icons/fa";
+import { Link } from "react-router-dom";
 export default function AboutIntro() {
   return (
     <section className="relative bg-[#f9fbf8] py-20 px-6 overflow-hidden">
@@ -46,23 +47,28 @@ export default function AboutIntro() {
           {/* Feature Points */}
           <div className="space-y-5 mb-10">
             <div className="flex items-start gap-4">
-              <div className="text-[#138f44] text-2xl">🥗</div>
+             <div className="text-[#138f44] text-2xl mt-1">
+  <FaAppleAlt />
+</div>
+
               <h4 className="text-lg font-semibold text-gray-800">
                 Smart Nutrition Programs
               </h4>
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="text-[#138f44] text-2xl">🏋️</div>
+              <div className="text-[#138f44] text-2xl mt-1">
+  <FaDumbbell />
+</div>
               <h4 className="text-lg font-semibold text-gray-800">
                 Fitness & Lifestyle Coaching
               </h4>
             </div>
           </div>
 
-          <button className="bg-[#138f44] hover:bg-[#0f7638] text-white px-10 py-4 font-semibold tracking-wide uppercase rounded-lg transition shadow-md hover:shadow-lg">
+          <Link to="/services" className="bg-[#138f44] hover:bg-[#0f7638] text-white px-10 py-4 font-semibold tracking-wide uppercase rounded-lg transition shadow-md hover:shadow-lg">
             Read More
-          </button>
+          </Link>
         </div>
       </div>
     </section>

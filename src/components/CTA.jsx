@@ -1,8 +1,8 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 export default function CTA() {
   return (
-    <section className="relative overflow-hidden">
+    <section id="contact" className="relative overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-2">
 
         {/* Left Image */}
@@ -62,7 +62,7 @@ export default function CTA() {
             {/* Modern Gradient Button */}
             <button className="relative inline-flex items-center justify-center px-10 py-4 rounded-full font-semibold overflow-hidden group">
               <span className="absolute inset-0 bg-gradient-to-r from-[#138f44] via-[#16a34a] to-[#0f766e] transition-transform duration-500 group-hover:scale-105"></span>
-              <span className="relative z-10 tracking-wide uppercase">Contact Us</span>
+              <Link to="/contact" className="relative z-10 tracking-wide uppercase">Contact Us</Link>
             </button>
           </div>
         </div>

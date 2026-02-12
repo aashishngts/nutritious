@@ -1,13 +1,13 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const AboutFeatureProjects = () => {
   return (
-    <section className="w-full bg-[#86b817] py-20">
+    <section className="w-full bg-[#138f44] py-20">
       <div className="max-w-[1200px] mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* Left White Content */}
           <div className="bg-white p-14">
-            <p className="text-[#86b817] uppercase tracking-[3px] text-[13px] font-semibold mb-2 flex items-center gap-2">
+            <p className="text-[#138f44] uppercase tracking-[3px] text-[13px] font-semibold mb-2 flex items-center gap-2">
               <span className="w-[2px] h-[16px] bg-[#86b817] inline-block"></span>
               Explore Our Projects
             </p>
@@ -20,10 +20,10 @@ const AboutFeatureProjects = () => {
               There are many variations of passages of Lorem Ipsum available, but the
               majority have suffered
             </p>
-
-            <button className="bg-[#86b817] hover:bg-[#77a713] text-white px-10 py-4 font-semibold tracking-[2px] uppercase transition flex items-center gap-2">
-              <span className="text-[18px]">🍃</span> READ MORE
-            </button>
+<Link to="/services">
+            <button className="bg-[#138f44] hover:bg-[#0f7a3a] text-white px-10 py-4 font-semibold tracking-[2px] uppercase transition flex items-center gap-2 rounded-4xl">
+               READ MORE
+            </button></Link>
           </div>
 
           {/* Right Images */}
@@ -35,9 +35,9 @@ const AboutFeatureProjects = () => {
             />
 
             <img
-              src="https://images.unsplash.com/photo-1599058917212-d750089bc07a?auto=format&fit=crop&w=900&q=80"
+              src="https://png.pngtree.com/png-vector/20250308/ourmid/pngtree-vibrant-healthy-food-plate-with-a-balanced-diet-of-fruits-vegetables-png-image_15750541.png"
               alt="project2"
-              className="w-full h-[360px] object-cover"
+              className="w-full h-[360px] object-cover bg-white"
             />
 
             <img

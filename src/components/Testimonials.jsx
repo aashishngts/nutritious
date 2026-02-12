@@ -23,7 +23,7 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="relative py-28 bg-gradient-to-b from-[#f8fbf9] to-white overflow-hidden">
+    <section id="testimonials" className="relative py-24 bg-gradient-to-b from-[#f8fbf9] to-white overflow-hidden">
       {/* Soft Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#138f44]/10 rounded-full blur-3xl"></div>
 

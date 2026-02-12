@@ -1,108 +1,127 @@
 import React from "react";
-
+import CountUp from "react-countup";
+import { Link } from "react-router-dom";
 export default function About() {
   const stats = [
     { number: "12+", label: "Years Experience" },
-    { number: "687+", label: "Project Done" },
-    { number: "368+", label: "Happy Customers" },
+    { number: "287+", label: "Projects Done" },
+    { number: "268+", label: "Happy Customers" },
     { number: "25+", label: "Awards Won" },
   ];
 
   const offers = [
-    { title: "Balance Body & Mind" },
-    { title: "Personal Coaching" },
-    { title: "Personalized Nutrition" },
-    { title: "Sports Nutritionist" },
-    { title: "Child Nutrition" },
-    { title: "Support & Motivation" },
+    "Balance Body & Mind",
+    "Personal Coaching",
+    "Personalized Nutrition",
+    "Sports Nutritionist",
+    "Child Nutrition",
+    "Support & Motivation",
   ];
 
   return (
-    <section id="about" className="relative py-24 overflow-hidden bg-[#f7faf8]">
-      {/* 🌿 Soft Theme Background Accents */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#138f44]/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#138f44]/10 rounded-full blur-3xl"></div>
+    <section id="about" className="relative py-32 bg-gradient-to-b from-white to-[#f6fbf7] overflow-hidden">
+      
+      {/* Background Accent */}
+      <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-[#138f44]/10 rounded-full blur-3xl"></div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-14 items-center">
-          {/* Left Content */}
-          <div>
-            <p className="text-[#138f44] font-semibold mb-4 uppercase tracking-widest text-sm">
-              About Nutritius
-            </p>
 
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Improving Life Through{" "}
-              <span className="relative inline-block">
-                Healthy Living
-                <span className="absolute left-0 bottom-1 w-1/2 h-2 bg-[#138f44]/30 rounded"></span>
-              </span>
-            </h2>
+        {/* MAIN GRID */}
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
 
-            <p className="text-gray-600 mb-8 leading-relaxed">
-              We create personalized wellness programs that help you build
-              lasting healthy habits with the right balance of nutrition,
-              movement, and motivation.
-            </p>
-
-            <div className="mb-10">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                Nutrition Special Offers
-              </h3>
-
-              <div className="grid grid-cols-2 gap-y-3 gap-x-6">
-                {offers.map((offer, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <span className="text-[#138f44] font-bold">✓</span>
-                    <span className="text-gray-700 text-sm">{offer.title}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <button className="relative inline-flex items-center justify-center px-9 py-3.5 rounded-4xl font-semibold text-white overflow-hidden group">
-              {/* Gradient Background */}
-              <span className="absolute inset-0 bg-gradient-to-r from-[#138f44] via-[#16a34a] to-[#0f766e] transition-transform duration-500 group-hover:scale-105"></span>
-
-              {/* Subtle Pattern Overlay */}
-              <span className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_2px_2px,white_1px,transparent_1px)] bg-[length:18px_18px]"></span>
-
-              {/* Hover Shine Effect */}
-              <span className="absolute -left-10 top-0 h-full w-10 bg-white/20 skew-x-12 transform group-hover:translate-x-[250%] transition-transform duration-700"></span>
-
-              {/* Button Text */}
-              <span className="relative z-10 tracking-wide    uppercase">
-                Read More
-              </span>
-            </button>
-          </div>
-
-          {/* Center Image */}
-          <div>
+          {/* IMAGE SIDE */}
+          <div className="relative">
             <img
-              src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=600&q=80"
-              alt="Healthy food lifestyle"
-              className="rounded-2xl shadow-xl"
+              src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=900&q=80"
+              alt="Healthy lifestyle"
+              className="rounded-3xl shadow-2xl"
             />
+            {/* Soft Decorative Shape */}
+            <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-[#86b817]/10 rounded-3xl -z-10"></div>
           </div>
 
-          {/* Stats */}
-          <div className="grid gap-6">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-md hover:shadow-xl transition border border-[#138f44]/10"
-              >
-                <h3 className="text-4xl font-bold text-[#138f44] mb-2">
-                  {stat.number}
-                </h3>
-                <p className="text-gray-600 text-sm font-semibold tracking-wide">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
+          {/* TEXT SIDE */}
+          {/* === Replace your current text-column div with this === */}
+<div className="max-w-xl">
+  {/* Eyebrow */}
+  <p className="text-[#138f44] font-semibold uppercase tracking-widest text-sm mb-3">
+    About Nutritius
+  </p>
+
+  {/* Heading */}
+  <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-5">
+    Improving Life Through{" "}
+    <span className="text-[#138f44]">Healthy Living</span>
+  </h2>
+
+  {/* Description */}
+  <p className="text-gray-600 leading-relaxed mb-8">
+    We create personalized wellness programs that help you build lasting
+    healthy habits with the right balance of nutrition, movement, and motivation.
+  </p>
+
+  {/* Offers — compact grid */}
+  <div className="grid grid-cols-2 gap-x-6 gap-y-3 mb-8">
+    {offers.map((offer, index) => (
+      <div key={index} className="flex items-center gap-3">
+        <span className="w-6 h-6 flex items-center justify-center rounded-full bg-[#138f44]/10 text-[#138f44] text-[12px] font-semibold">✓</span>
+        <span className="text-gray-700 text-sm">{offer}</span>
+      </div>
+    ))}
+  </div>
+
+  {/* CTA — compact, left-aligned on large screens, full-width on small */}
+  <div className="flex lg:w-auto w-40 justify-start">
+    <button
+      aria-label="Read more about Nutritius"
+      className="relative inline-flex items-center justify-center  py-2.5 md:px-8 md:py-3 rounded-full text-sm md:text-base font-semibold text-white overflow-hidden group shadow-md hover:shadow-lg transition w-full sm:w-auto max-w-[220px]"
+    >
+      {/* subtle gradient background */}
+      <span className="absolute inset-0 bg-gradient-to-r from-[#138f44] via-[#16a34a] to-[#0f766e] transform-gpu transition-transform duration-500 group-hover:scale-105" />
+      {/* faint pattern / sheen, very subtle */}
+      <span className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_2px_2px,white_1px,transparent_1px)] bg-[length:14px_14px]" />
+      {/* label */}
+      <span className="relative z-10 flex items-center gap-3">
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <path d="M5 12h14" stroke="rgba(255,255,255,0.95)" strokeWidth="2" strokeLinecap="round" />
+          <path d="M12 5l7 7-7 7" stroke="rgba(255,255,255,0.95)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+        <Link to="/about">Read More</Link>
+      </span>
+    </button>
+  </div>
+</div>
+
         </div>
+
+        {/* STATS SECTION — integrated, not a separate bar */}
+        <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-10">
+  {stats.map((stat, index) => {
+    const numericValue = parseInt(stat.number);
+
+    return (
+      <div
+        key={index}
+        className="bg-white p-8 rounded-2xl shadow-md border border-[#138f44]/10 text-center hover:shadow-xl transition"
+      >
+        <h3 className="text-4xl font-bold text-[#138f44] mb-2">
+          <CountUp
+            end={numericValue}
+            duration={2.5}
+            enableScrollSpy
+            scrollSpyDelay={200}
+          />
+          +
+        </h3>
+
+        <p className="text-gray-600 text-sm font-medium uppercase tracking-wide">
+          {stat.label}
+        </p>
+      </div>
+    );
+  })}
+</div>
+
       </div>
     </section>
   );

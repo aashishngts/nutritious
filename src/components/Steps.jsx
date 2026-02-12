@@ -1,12 +1,14 @@
 import React from "react";
+import { FaWeight, FaRunning, FaUserTie, FaAppleAlt } from "react-icons/fa";
 
 export default function Steps() {
   const steps = [
-    { num: "01", title: "Weight Loss Program" },
-    { num: "02", title: "Fitness Performance" },
-    { num: "03", title: "Personal Coaching" },
-    { num: "04", title: "Child Nutrition" },
-  ];
+  { num: "01", title: "Weight Loss Program", icon: <FaWeight /> },
+  { num: "02", title: "Fitness Performance", icon: <FaRunning /> },
+  { num: "03", title: "Personal Coaching", icon: <FaUserTie /> },
+  { num: "04", title: "Child Nutrition", icon: <FaAppleAlt /> },
+];
+
 
   return (
     <section className="relative py-24 bg-[#f8fbf9] overflow-hidden">
@@ -38,14 +40,14 @@ export default function Steps() {
               className="group relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 overflow-hidden"
             >
               {/* Big Step Number */}
-              <span className="absolute -top-6 -right-4 text-7xl font-bold text-[#138f44]/10 select-none">
+              <span className="absolute top-2 right-4 text-7xl font-bold text-[#138f44]/10 select-none">
                 {step.num}
               </span>
 
-              {/* Icon */}
-              <div className="w-14 h-14 flex items-center justify-center bg-[#138f44]/10 text-[#138f44] rounded-xl mb-5 transition group-hover:scale-110">
-                📋
-              </div>
+              <div className="w-14 h-14 flex items-center justify-center bg-[#138f44]/10 text-[#138f44] rounded-xl mb-5 transition group-hover:scale-110 text-2xl">
+  {step.icon}
+</div>
+
 
               {/* Title */}
               <h3 className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-[#138f44] transition">

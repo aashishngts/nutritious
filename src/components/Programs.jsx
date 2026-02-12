@@ -1,4 +1,8 @@
 import React from "react";
+import { FaDumbbell } from "react-icons/fa6";
+import { FaLeaf } from "react-icons/fa6";
+import { FaPlay } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Programs() {
   return (
@@ -23,8 +27,9 @@ export default function Programs() {
 
         {/* Green Feature Card */}
         <div className="h-80 bg-gradient-to-br from-[#138f44] to-[#0f7638] flex flex-col items-center justify-center p-8 text-white text-center">
-          <div className="text-5xl mb-4">💪</div>
-          <p className="text-xs font-semibold tracking-widest mb-2">FITNESS</p>
+<div className="text-5xl text-[#ffffff] mb-4">
+  <FaDumbbell />
+</div>          <p className="text-xs font-semibold tracking-widest mb-2">FITNESS</p>
           <h3 className="text-2xl font-bold mb-3">Performance Coaching</h3>
           <p className="text-sm text-white/90">Strength, stamina, and endurance training programs.</p>
         </div>
@@ -46,8 +51,9 @@ export default function Programs() {
 
         {/* Light Feature Card */}
         <div className="h-80 bg-white flex flex-col items-center justify-center p-8 text-center border border-gray-100">
-          <div className="text-5xl text-[#138f44] mb-4">🥗</div>
-          <p className="text-xs font-semibold tracking-widest text-[#138f44] mb-2">WELLNESS</p>
+<div className="text-5xl text-[#138f44] mb-4">
+  <FaLeaf />
+</div>          <p className="text-xs font-semibold tracking-widest text-[#138f44] mb-2">WELLNESS</p>
           <h3 className="text-2xl font-bold mb-3 text-gray-900">Personal Nutrition</h3>
           <p className="text-sm text-gray-600">Custom plans tailored to your body and goals.</p>
         </div>
@@ -58,9 +64,15 @@ export default function Programs() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#138f4420,transparent_60%)]"></div>
 
         <div className="relative max-w-3xl mx-auto px-6">
-          <button className="w-20 h-20 bg-[#138f44] rounded-full flex items-center justify-center mx-auto mb-8 hover:scale-110 transition shadow-xl">
-            ▶
-          </button>
+          <button className="group relative w-20 h-20 bg-[#138f44] rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl transition hover:scale-110">
+  
+  {/* Pulse Animation Ring */}
+  <span className="absolute inset-0 rounded-full bg-[#138f44] opacity-30 animate-ping"></span>
+
+  {/* Play Icon */}
+  <FaPlay className="text-white text-xl ml-1 relative z-10" />
+</button>
+
 
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
             Trusted by More Than 650,000 Happy People
@@ -70,9 +82,9 @@ export default function Programs() {
             Join thousands who improved their lifestyle with our expert nutrition and fitness guidance.
           </p>
 
-          <button className="bg-white text-gray-900 px-10 py-4 rounded-full font-semibold hover:bg-gray-200 transition shadow-md">
+          <Link to="/contact" className="bg-white text-gray-900 px-10 py-4 rounded-full font-semibold hover:bg-gray-200 transition shadow-md">
             Make Appointment
-          </button>
+          </Link>
         </div>
       </div>
     </section>

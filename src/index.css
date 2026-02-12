@@ -5,7 +5,6 @@
 
 h1,h2,h3,h4,h5,h6{
     font-family: "Outfit", sans-serif;
-
 }
 
 nav a{
@@ -44,14 +43,19 @@ a,p{
 
 }
 
-.bannerhomepage .button1{
-    border-radius: 30px!important;
-padding:10px 22px;font-family: "Poppins"!important;
-text-transform: capitalize!important;
-font-weight: 400!important;
-background: linear-gradient(66deg,rgba(0, 201, 80, 1) 34%, rgba(19, 143, 68, 1) 54%, rgba(19, 143, 68, 1) 79%);
+.bannerhomepage .button1 {
+  border-radius: 30px !important;
+  padding: 10px 22px;
+  font-family: "Poppins" !important;
+  text-transform: capitalize !important;
+  font-weight: 400 !important;
+  background: linear-gradient(66deg, rgba(0,201,80,1) 34%, rgba(19,143,68,1) 54%, rgba(19,143,68,1) 79%);
+  transition: all 0.3s ease;
+}
 
-
+.bannerhomepage .button1:hover {
+  background: linear-gradient(66deg, rgba(0,180,70,1) 34%, rgba(15,120,55,1) 54%, rgba(15,120,55,1) 79%);
+  transform: translateY(-2px);
 }
 
 
@@ -64,10 +68,16 @@ background: #fff;
 color:#000
 }
 
+.bannerhomepage .button2:hover {
+  background: linear-gradient(66deg, rgb(79, 84, 81) 34%, rgb(78, 84, 80) 54%, rgb(73, 77, 74) 79%);
+  transform: translateY(-2px);
+  color:#fff;
+}
+
 .bannerhomepage h1{
     font-size: 58px!important;
      font-family: "Outfit", sans-serif;
-     width: 50%!important;
+     width: 60%!important;
 }
 
 .bannerhomepage p{
