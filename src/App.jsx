@@ -10,6 +10,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import AdminLogin from "./auth/AdminLogin";
 import AdminDashboard from "./components/AdminDashboard";
 import BlogDetails from "./pages/BlogDetails";
+import NotFound from "./components/NotFound";
 
 
 const App = () => {
@@ -28,6 +29,8 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/blogs" element={<Blog />} />
+
+         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

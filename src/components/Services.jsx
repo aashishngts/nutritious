@@ -21,7 +21,7 @@ const Services = () => {
           <p className="text-green-500 font-semibold mb-4 uppercase tracking-wide text-sm">
             WHAT WE OFFER
           </p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900">
+          <h2 className="text-2xl lg:text-5xl font-bold text-gray-900">
             Our Diet & Nutrition Services
           </h2>
         </div>

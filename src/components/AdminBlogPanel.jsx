@@ -66,7 +66,6 @@ const AdminBlogPanel = ({ onLogout }) => {
           image: blog.coverImage,
           fullContent: blog.content,
         }));
-
         setBlogs(formattedBlogs);
       }
     } catch (err) {
@@ -75,7 +74,9 @@ const AdminBlogPanel = ({ onLogout }) => {
     } finally {
       setLoading(false);
     }
+    console.log(result.data);
   };
+
 
   // Handle image file selection
   const handleImageChange = (e) => {
@@ -506,12 +507,12 @@ const AdminBlogPanel = ({ onLogout }) => {
     <section className="w-full bg-white py-20">
       <div className="max-w-[1200px] mx-auto px-4">
         {/* Admin Header */}
-        <div className="relative flex justify-between items-center mb-10 mt-8 bg-gradient-to-r from-[#16a44f] to-[#117e40] p-7 rounded-2xl shadow-xl overflow-hidden">
+        <div className="relative flex md:flex-row flex-col justify-between items-center mb-10 mt-8 bg-gradient-to-r from-[#16a44f] to-[#117e40] p-7 rounded-2xl shadow-xl overflow-hidden">
 
   {/* Soft glow overlay */}
   <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
 
-  <div className="relative flex items-center gap-4">
+  <div className="relative flex items-center gap-4 ">
     <div>
       <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-wide drop-shadow">
         Admin Dashboard
@@ -522,7 +523,7 @@ const AdminBlogPanel = ({ onLogout }) => {
     </div>
   </div>
 
-  <div className="relative flex gap-3">
+  <div className="relative flex gap-3 md:mt-0 mt-4">
     <button
       onClick={() => setShowAdminPanel(true)}
       className="md:px-5 md:py-2.5 px-4 py-2 bg-white text-[#138f44] font-semibold rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300"

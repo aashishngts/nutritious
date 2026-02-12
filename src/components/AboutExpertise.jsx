@@ -33,7 +33,7 @@ const AboutExpertise = () => {
           Why Choose Us
         </p>
 
-        <h2 className="text-[58px] md:text-[64px] font-extrabold text-[#222] text-center leading-[1.1] mb-16">
+        <h2 className="md:text-5xl text-2xl  font-extrabold text-[#222] text-center leading-[1.1] mb-16">
           Our Main Areas Of Expertise
         </h2>
 
