@@ -19,7 +19,7 @@ const Navigation = () => {
         scrolled ? "bg-white shadow-lg" : "bg-white shadow-sm"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-8xl mx-auto px-10 sm:px-6 lg:px-14 ">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 cursor-pointer">
@@ -75,7 +75,7 @@ const Navigation = () => {
               >
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
               </svg>
-              <span className="font-semibold">APPOINTMENT</span>
+              <span className="font-semibold">Appointment </span>
             </button>
           </div>
 

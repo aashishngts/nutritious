@@ -3,23 +3,21 @@ import React from "react";
 const ServicesBanner = () => {
   return (
     <section
-      className="w-full h-[300px] md:h-[360px] bg-cover bg-center relative"
+      className="relative w-full h-[280px] md:h-[340px] bg-cover bg-center flex items-center"
       style={{
         backgroundImage:
           "url(https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1800&q=80)",
       }}
     >
-      {/* White overlay */}
-      <div className="absolute inset-0 bg-white/80"></div>
+      {/* Left → Right Black Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
 
-      <div className="relative max-w-[1200px] mx-auto px-4 h-full flex items-center">
-        <div>
-          <h1 className="text-[58px] md:text-[72px] font-extrabold text-[#222] leading-tight">
-            Services
-          </h1>
+      <div className="relative max-w-6xl mx-auto px-6 text-white w-full">
+        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
+          Services
+        </h1>
 
-          
-        </div>
+        
       </div>
     </section>
   );

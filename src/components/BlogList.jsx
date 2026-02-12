@@ -112,6 +112,6 @@ const BlogList = () => {
     
     </section>
   );
-};
+}; 
 
 export default BlogList;

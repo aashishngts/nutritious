@@ -1,138 +1,103 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-const Hero = () => {
-  const slides = [
-    {
-      id: 1,
-      bg: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1800&q=80",
-      tag: "Great Experience In Nutrition",
-      title: (
-        <>
-          Smart Nutrition Choices <br /> For a Strong Body & Peaceful Soul
-        </>
-      ),
-      desc: "Discover how the right food choices can transform your energy, mood, and overall well-being every single day.",
-    },
-    {
-      id: 2,
-      bg: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1800&q=80",
-      tag: "Healthy Lifestyle Programs",
-      title: (
-        <>
-          Eat Smart <br /> Live Better Every Day
-        </>
-      ),
-      desc: "Simple, sustainable nutrition habits tailored to your goals — whether it's weight loss, muscle gain, or more energy.",
-    },
-    {
-      id: 3,
-      bg: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1800&q=80",
-      tag: "Personal Diet & Fitness Coaching",
-      title: (
-        <>
-          Fuel Your Body Right <br /> Unlock Your True Potential
-        </>
-      ),
-      desc: "Balanced nutrition + smart training + proper recovery = stronger body, sharper mind, and lasting results.",
-    },
-    {
-      id: 4,
-      bg: "https://parade.com/.image/w_3840,q_auto:good,c_limit/MjEzNTk3NjE3NzAyMDUzMzI3/what-happens-to-your-body-if-you-eat-a-salad-every-day.jpg",
-      tag: "Daily Fresh Salads",
-      title: (
-        <>
-          One Salad a Day <br /> Keeps the Doctor Away
-        </>
-      ),
-      desc: "Add nutrient-packed greens, colorful veggies & lean proteins to your routine for glowing skin and better immunity.",
-    },
-    {
-      id: 5,
-      bg: "https://simplegreensmoothies.com/wp-content/uploads/tropical-smoothie-bowl-mango-healthy-plant-based-4.jpg",
-      tag: "Superfood Smoothie Bowls",
-      title: (
-        <>
-          Start Your Day with <br /> Tropical Energy Boost
-        </>
-      ),
-      desc: "Fresh fruits, nuts, seeds and plant-based goodness — the perfect breakfast for busy mornings and active lifestyles.",
-    },
-  ];
+const slides = [
+  {
+    id: 1,
+    bg: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1800&q=80",
+    tag: "Great Experience In Nutrition",
+    title: "Smart Nutrition Choices For a Strong Body & Peaceful Soul",
+    desc: "Discover how the right food choices can transform your energy, mood, and overall well-being every single day.",
+  },
+  {
+    id: 2,
+    bg: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1800&q=80",
+    tag: "Healthy Lifestyle Programs",
+    title: "Eat Smart, Live Better Every Day",
+    desc: "Simple, sustainable nutrition habits tailored to your goals — whether it's weight loss, muscle gain, or more energy.",
+  },
+  {
+    id: 3,
+    bg: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1800&q=80",
+    tag: "Personal Diet & Fitness Coaching",
+    title: "Fuel Your Body Right, Unlock Your True Potential",
+    desc: "Balanced nutrition + smart training + proper recovery = stronger body, sharper mind, and lasting results.",
+  },
+  {
+    id: 4,
+    bg: "https://parade.com/.image/w_3840,q_auto:good,c_limit/MjEzNTk3NjE3NzAyMDUzMzI3/what-happens-to-your-body-if-you-eat-a-salad-every-day.jpg",
+    tag: "Daily Fresh Salads",
+    title: "One Salad a Day Keeps the Doctor Away",
+    desc: "Add nutrient-packed greens, colorful veggies & lean proteins to your routine for glowing skin and better immunity.",
+  },
+  {
+    id: 5,
+    bg: "https://simplegreensmoothies.com/wp-content/uploads/tropical-smoothie-bowl-mango-healthy-plant-based-4.jpg",
+    tag: "Superfood Smoothie Bowls",
+    title: "Start Your Day with a Tropical Energy Boost",
+    desc: "Fresh fruits, nuts, seeds and plant-based goodness — the perfect breakfast for busy mornings and active lifestyles.",
+  },
+];
 
+export default function Hero() {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
     }, 5000);
-
     return () => clearInterval(timer);
   }, []);
 
-  const prevSlide = () => {
-    setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  };
-
-  const nextSlide = () => {
-    setCurrent((prev) => (prev + 1) % slides.length);
-  };
+  const goToSlide = (index) => setCurrent(index);
 
   return (
-    <section className="relative w-full h-[70vh] sm:h-[80vh] md:h-[85vh] lg:h-[90vh] xl:h-screen overflow-hidden">
-      {/* Multiple backgrounds with crossfade */}
-      {slides.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
-            current === index ? "opacity-100" : "opacity-0"
-          }`}
-          style={{ backgroundImage: `url(${slide.bg})` }}
-        />
-      ))}
+    <section className="bannerhomepage relative h-[75vh] sm:h-[85vh] lg:h-screen w-full overflow-hidden font-poppins">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center transition-all duration-1000"
+        style={{ backgroundImage: `url(${slides[current].bg})` }}
+      />
 
-      {/* Strong overlay – makes text readable on ALL images */}
-      <div className="absolute inset-0 bg-black/55" />
+      {/* Dark Overlay */}
+<div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
 
-        {/* Main content */}
-      <div className="relative z-10 flex h-full items-center px-5 sm:px-8 md:px-12 lg:px-16 max-w-7xl mx-auto">
-        <div
-          key={current} // remount → animation restarts on slide change
-          className="w-full max-w-3xl text-center lg:text-left animate-fade-up opacity-0"
-        >
-          <div className="inline-block mb-4 md:mb-5 rounded-full bg-[#86b817]/25 px-5 py-2 text-sm md:text-base font-semibold uppercase tracking-wider text-[#86b817] backdrop-blur-sm">
+
+      {/* Content */}
+      <div className="relative z-10  mt-10  flex h-full items-center justify-center lg:justify-start px-6 sm:px-12 lg:px-20 max-w-full mx-auto">
+        <div className="captiontext   text-center lg:text-left text-white animate-fadeIn">
+          
+          <span className="tagsline inline-block mb-4 rounded-full bg-[#86b817]/20 px-5 py-2 text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#86b817]">
             {slides[current].tag}
-          </div>
+          </span>
 
-          <h1 className="mb-5 md:mb-6 text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+          <h1 className="text-3xl mt-5 sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
             {slides[current].title}
           </h1>
 
-          <p className="mb-8 md:mb-10 text-base sm:text-lg md:text-xl text-gray-100 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] max-w-2xl mx-auto lg:mx-0">
+          <p className="text-sm sm:text-base md:text-lg text-gray-200 mb-8">
             {slides[current].desc}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
-            <button className="min-w-[160px] rounded-lg bg-[#86b817] px-8 py-3.5 md:py-4 font-semibold uppercase tracking-wider text-white hover:bg-[#77a713] transition shadow-lg hover:shadow-xl">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <button className="button1 rounded-lg bg-[#86b817] px-8 py-3 font-semibold uppercase tracking-wide hover:bg-[#76a315] transition">
               Get Started
             </button>
 
-            <button className="min-w-[160px] rounded-lg bg-white/15 backdrop-blur-md px-8 py-3.5 md:py-4 font-semibold uppercase tracking-wider text-white border border-white/40 hover:bg-white/25 transition shadow-lg">
+            <button className="button2 rounded-lg border border-white/40 bg-white/10 px-8 py-3 font-semibold uppercase tracking-wide backdrop-blur hover:bg-white/20 transition">
               Learn More
             </button>
           </div>
 
           {/* Dots */}
-          <div className="mt-10 flex justify-center lg:justify-start gap-3 md:gap-4">
+          <div className="dotsbutton flex justify-center lg:justify-start gap-3 mt-10">
             {slides.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setCurrent(i)}
-                className={`h-3.5 rounded-full transition-all duration-300 ${
-                  current === i
-                    ? "w-10 bg-[#86b817] shadow-md"
-                    : "w-3.5 bg-white/50 hover:bg-white/80"
+                onClick={() => goToSlide(i)}
+                className={`h-3 rounded-full transition-all ${
+                  current === i ? "w-8 bg-[#86b817]" : "w-3 bg-white/40"
                 }`}
-                aria-label={`Go to slide ${i + 1}`}
+                aria-label={`Slide ${i + 1}`}
               />
             ))}
           </div>
@@ -140,6 +105,4 @@ const Hero = () => {
       </div>
     </section>
   );
-};
-
-export default Hero;
+}

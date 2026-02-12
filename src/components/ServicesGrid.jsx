@@ -1,6 +1,6 @@
 import React from "react";
 
-const ServicesGrid = () => {
+export default function ServicesGrid() {
   const services = [
     {
       title: "Personal Nutrition Plan",
@@ -35,47 +35,58 @@ const ServicesGrid = () => {
   ];
 
   return (
-    <section className="w-full bg-white py-20">
-      <div className="max-w-[1200px] mx-auto px-4">
-        {/* Heading */}
-        <p className="text-[#86b817] uppercase tracking-[3px] text-[13px] font-semibold mb-3 text-center flex justify-center items-center gap-2">
-          <span className="w-[2px] h-[16px] bg-[#86b817] inline-block"></span>
-          What We Offer
-        </p>
+    <section className="relative py-24 bg-[#f8fbf9] overflow-hidden">
+      {/* Soft Background Accent */}
+      <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#138f44]/10 rounded-full blur-3xl"></div>
 
-        <h2 className="text-[56px] md:text-[64px] font-extrabold text-[#222] text-center leading-[1.1] mb-14">
-          Our Nutrition Services
-        </h2>
+      <div className="relative max-w-6xl mx-auto px-6">
+        {/* Heading */}
+        <div className="text-center mb-16">
+          <p className="text-[#138f44] uppercase tracking-widest text-sm font-semibold mb-3 flex justify-center items-center gap-2">
+            <span className="w-1 h-5 bg-[#138f44] inline-block"></span>
+            What We Offer
+          </p>
+
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+            Our{" "}
+            <span className="relative inline-block">
+              Nutrition Services
+              <span className="absolute left-0 bottom-1 w-1/2 h-2 bg-[#138f44]/30 rounded"></span>
+            </span>
+          </h2>
+        </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {services.map((item, idx) => (
             <div
               key={idx}
-              className="bg-[#f7f7f7] p-10 hover:shadow-md transition"
+              className="group bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-[#138f44]/20"
             >
-              <div className="w-[80px] h-[80px] bg-white rounded-full flex items-center justify-center mb-7 relative">
-                <span className="absolute -left-2 -top-2 w-10 h-10 bg-[#86b817] rounded-full"></span>
-                <span className="relative text-[34px]">{item.icon}</span>
+              {/* Icon */}
+              <div className="relative w-16 h-16 flex items-center justify-center mb-6">
+                <div className="absolute inset-0 bg-[#138f44]/10 rounded-xl group-hover:scale-110 transition"></div>
+                <span className="relative text-2xl">{item.icon}</span>
               </div>
 
-              <h3 className="text-[22px] font-bold text-[#222] mb-4">
+              {/* Title */}
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
                 {item.title}
               </h3>
 
-              <p className="text-[#777] text-[15px] leading-7 mb-7">
+              {/* Description */}
+              <p className="text-gray-600 text-sm leading-relaxed mb-6">
                 {item.desc}
               </p>
 
-              <button className="text-[#86b817] uppercase tracking-[2px] text-[13px] font-semibold underline underline-offset-4">
-                Read More
+              {/* Link Button */}
+              <button className="text-[#138f44] font-semibold text-sm tracking-wide inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                Read More →
               </button>
-            </div>
+            </div> 
           ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default ServicesGrid;
+}
