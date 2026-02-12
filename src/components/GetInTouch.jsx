@@ -2,77 +2,82 @@ import React from "react";
 
 const GetInTouch = () => {
   return (
-    <section className="w-full bg-white pb-20">
-      <div className="max-w-[1200px] mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+    <section className="relative w-full py-28 bg-gradient-to-b from-white to-[#f6fbf7] overflow-hidden">
+      {/* Soft Background Glow */}
+      <div className="absolute -top-32 right-0 w-[400px] h-[400px] bg-[#86b817]/10 rounded-full blur-3xl"></div>
+
+      <div className="relative max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-16 items-stretch">
           {/* Left Image */}
-          <div className="w-full">
+          <div className="relative">
+            <div className="absolute -top-6 -left-6 w-full h-full border-4 border-[#86b817]/20 rounded-3xl"></div>
             <img
               src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=1200&q=80"
-              alt="get in touch"
-              className="w-full h-[520px] object-cover"
+              alt="Get in touch"
+              className="relative w-full h-[560px] object-cover rounded-3xl shadow-2xl"
             />
           </div>
 
           {/* Right Form */}
-          <div className="w-full">
-            <p className="text-[#86b817] uppercase tracking-[3px] text-[13px] font-semibold mb-2 flex items-center gap-2">
-              <span className="w-[2px] h-[16px] bg-[#86b817] inline-block"></span>
+          <div>
+            <p className="text-[#138f44] uppercase tracking-[4px] text-sm font-semibold mb-4 flex items-center gap-3">
+              <span className="w-[3px] h-[18px] bg-[#138f44] inline-block"></span>
               Let's Talk
             </p>
 
-            <h2 className="text-[52px] font-extrabold text-[#222] leading-[1.1] mb-4">
+            <h2 className="text-5xl font-extrabold text-gray-900 leading-tight mb-5">
               Get In Touch
             </h2>
 
-            <p className="text-[#777] text-[16px] leading-7 mb-8 max-w-[520px]">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout.
+            <p className="text-gray-600 text-base leading-7 mb-8 max-w-md">
+              Have questions about nutrition or fitness plans? Our experts are
+              here to help.
             </p>
 
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="w-full bg-[#f7f7f7] px-6 py-4 outline-none text-[#666]"
-                />
-                <input
-                  type="text"
-                  placeholder="Phone Number"
-                  className="w-full bg-[#f7f7f7] px-6 py-4 outline-none text-[#666]"
-                />
-              </div>
+            <form className="space-y-5">
+  {/* Row 1 */}
+  <div className="grid md:grid-cols-2 gap-5">
+    <input
+      type="text"
+      placeholder="Your Name"
+      className="w-full bg-[#f9fafb] border border-gray-200 rounded-lg px-4 py-3 text-sm focus:border-[#86b817] focus:ring-2 focus:ring-[#86b817]/20 outline-none transition"
+    />
 
-              <input
-                type="email"
-                placeholder="Email Address"
-                className="w-full bg-[#f7f7f7] px-6 py-4 outline-none text-[#666]"
-              />
+    <input
+      type="text"
+      placeholder="Phone Number"
+      className="w-full bg-[#f9fafb] border border-gray-200 rounded-lg px-4 py-3 text-sm focus:border-[#86b817] focus:ring-2 focus:ring-[#86b817]/20 outline-none transition"
+    />
+  </div>
 
-              <input
-                type="text"
-                placeholder="subject"
-                className="w-full bg-[#f7f7f7] px-6 py-4 outline-none text-[#666]"
-              />
+  <input
+    type="email"
+    placeholder="Email Address"
+    className="w-full bg-[#f9fafb] border border-gray-200 rounded-lg px-4 py-3 text-sm focus:border-[#86b817] focus:ring-2 focus:ring-[#86b817]/20 outline-none transition"
+  />
 
-              <textarea
-                rows="6"
-                placeholder="Write Your Message"
-                className="w-full bg-[#f7f7f7] px-6 py-4 outline-none text-[#666] resize-none"
-              ></textarea>
+  <input
+    type="text"
+    placeholder="Subject"
+    className="w-full bg-[#f9fafb] border border-gray-200 rounded-lg px-4 py-3 text-sm focus:border-[#86b817] focus:ring-2 focus:ring-[#86b817]/20 outline-none transition"
+  />
 
-              <button
-                type="submit"
-                className="bg-[#86b817] hover:bg-[#77a713] text-white px-10 py-4 font-semibold tracking-[2px] uppercase transition"
-              >
-                Send Message
-              </button>
-            </form>
+  <textarea
+    rows="3"
+    placeholder="Write your message..."
+    className="w-full bg-[#f9fafb] border border-gray-200 rounded-lg px-4 py-3 text-sm focus:border-[#86b817] focus:ring-2 focus:ring-[#86b817]/20 outline-none transition resize-none"
+  ></textarea>
+
+  <button
+    type="submit"
+    className="mt-2 bg-[#138f44] hover:bg-[#0f7a3a] text-white px-10 py-3 rounded-full font-semibold uppercase tracking-wide transition shadow-md hover:shadow-lg"
+  >
+    Send Message
+  </button>
+</form>
+
           </div>
         </div>
-
-        
       </div>
     </section>
   );

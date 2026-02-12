@@ -19,17 +19,16 @@ const Navigation = () => {
         scrolled ? "bg-white shadow-lg" : "bg-white shadow-sm"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-8xl mx-auto px-10 sm:px-6 lg:px-14 ">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 cursor-pointer">
-            <svg
-              className="w-8 h-8 text-green-500"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-            </svg>
+           <img
+  src="https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/1024px/1f33f.png"
+  alt="leaf icon"
+  className="w-7 h-7"
+/>
+
             <span className="text-2xl font-bold text-gray-900">Nutritius</span>
           </Link>
 
@@ -54,7 +53,7 @@ const Navigation = () => {
               Services
             </Link>
 
-            <Link to="/blog"
+            <Link to="/blogs"
               className="text-gray-700 hover:text-green-500 transition-colors duration-200 font-medium"
             >
               Blog
@@ -75,7 +74,7 @@ const Navigation = () => {
               >
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
               </svg>
-              <span className="font-semibold">APPOINTMENT</span>
+              <span className="font-semibold">Appointment </span>
             </button>
           </div>
 
@@ -122,7 +121,7 @@ const Navigation = () => {
               </Link>
 
               <a
-                href="#about-us"
+                href="/about"
                 className="text-gray-700 hover:text-green-500 transition-colors font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -130,7 +129,7 @@ const Navigation = () => {
               </a>
 
               <a
-                href="#services"
+                href="/services"
                 className="text-gray-700 hover:text-green-500 transition-colors font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -138,7 +137,7 @@ const Navigation = () => {
               </a>
 
               <a
-                href="#blog"
+                href="/blogs"
                 className="text-gray-700 hover:text-green-500 transition-colors font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >

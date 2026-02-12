@@ -1,23 +1,38 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const ServicesCTA = () => {
   return (
-    <section className="w-full bg-[#86b817] py-16">
-      <div className="max-w-[1200px] mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <h3 className="text-white text-[34px] md:text-[40px] font-extrabold leading-tight">
-              Ready To Start Your Healthy Journey?
-            </h3>
-            <p className="text-white/90 text-[16px] mt-2">
-              Get your personalized nutrition plan today with our experts.
-            </p>
-          </div>
+    <section className="relative py-24 bg-white overflow-hidden">
+      
+      {/* Soft Glow Accents */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[500px] h-[300px] bg-[#86b817]/10 blur-3xl rounded-full"></div>
 
-          <button className="bg-white text-[#86b817] px-10 py-4 font-bold tracking-[2px] uppercase hover:opacity-90 transition">
-            Appointment
-          </button>
-        </div>
+      <div className="relative max-w-3xl mx-auto px-6 text-center">
+        
+        <p className="text-[#86b817] uppercase tracking-[4px] text-sm font-semibold mb-4">
+          Start Your Wellness Journey
+        </p>
+
+        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+          Your Healthier Life <br />
+          <span className="text-[#138f44]">Begins Today</span>
+        </h2>
+
+        <p className="text-gray-600 text-lg leading-8 mb-10">
+          Small daily nutrition changes create powerful long-term results. 
+          Let our experts guide you with a plan built just for your body and lifestyle.
+        </p>
+
+        {/* Premium Gradient Button */}
+        <button className="relative inline-flex items-center justify-center px-12 py-5 rounded-full font-semibold text-white overflow-hidden group">
+          <span className="absolute inset-0 bg-gradient-to-r from-[#138f44] via-[#16a34a] to-[#0f766e] transition-transform duration-500 group-hover:scale-105"></span>
+          <span className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_2px_2px,white_1px,transparent_1px)] bg-[length:18px_18px]"></span>
+          <span className="absolute -left-10 top-0 h-full w-10 bg-white/20 skew-x-12 transform group-hover:translate-x-[250%] transition-transform duration-700"></span>
+          <Link to="/contact" className="relative z-10 tracking-wider uppercase">
+            Book Appointment
+          </Link>
+        </button>
+
       </div>
     </section>
   );

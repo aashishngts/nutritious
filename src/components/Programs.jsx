@@ -1,63 +1,92 @@
-import React from 'react';
+import React from "react";
+import { FaDumbbell } from "react-icons/fa6";
+import { FaLeaf } from "react-icons/fa6";
+import { FaPlay } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-const Programs = () => {
+export default function Programs() {
   return (
-    <section className="py-0">
+    <section>
+      {/* Programs Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        
+        {/* Image Card */}
         <div className="relative group overflow-hidden h-80">
-          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80" alt="Couple" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-            <p className="text-xs font-semibold tracking-wider mb-2">NUTRITION</p>
+          <img
+            src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80"
+            alt="Healthy nutrition"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+          <div className="absolute bottom-0 p-6 text-white">
+            <p className="text-xs font-semibold tracking-widest text-[#138f44] mb-2">NUTRITION</p>
             <h3 className="text-xl font-bold">Weight Loss Program</h3>
-            <p className="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p className="text-sm mt-2 text-gray-200">Smart meal plans for sustainable fat loss.</p>
           </div>
         </div>
 
-        <div className="h-80 bg-green-500 flex flex-col items-center justify-center p-6 text-white">
-          <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/>
-          </svg>
-          <p className="text-xs font-semibold tracking-wider mt-4 mb-2">NUTRITION</p>
-          <h3 className="text-2xl font-bold text-center mb-3">Fitness Performance</h3>
-          <p className="text-sm text-center">Lorem ipsum dolor sit amet elit.</p>
+        {/* Green Feature Card */}
+        <div className="h-80 bg-gradient-to-br from-[#138f44] to-[#0f7638] flex flex-col items-center justify-center p-8 text-white text-center">
+<div className="text-5xl text-[#ffffff] mb-4">
+  <FaDumbbell />
+</div>          <p className="text-xs font-semibold tracking-widest mb-2">FITNESS</p>
+          <h3 className="text-2xl font-bold mb-3">Performance Coaching</h3>
+          <p className="text-sm text-white/90">Strength, stamina, and endurance training programs.</p>
         </div>
 
+        {/* Image Card */}
         <div className="relative group overflow-hidden h-80">
-          <img src="https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=600&q=80" alt="Family" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-            <p className="text-xs font-semibold tracking-wider mb-2">NUTRITION</p>
-            <h3 className="text-xl font-bold">Weight Loss Program</h3>
-            <p className="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <img
+            src="https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=600&q=80"
+            alt="Family health"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+          <div className="absolute bottom-0 p-6 text-white">
+            <p className="text-xs font-semibold tracking-widest text-[#138f44] mb-2">FAMILY</p>
+            <h3 className="text-xl font-bold">Child Nutrition</h3>
+            <p className="text-sm mt-2 text-gray-200">Healthy growth through balanced meals.</p>
           </div>
         </div>
 
-        <div className="h-80 bg-white border border-gray-200 flex flex-col items-center justify-center p-6">
-          <svg className="w-16 h-16 text-green-500" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/>
-          </svg>
-          <p className="text-xs font-semibold tracking-wider mt-4 mb-2 text-green-500">NUTRITION</p>
-          <h3 className="text-2xl font-bold text-center mb-3 text-gray-900">Fitness Performance</h3>
-          <p className="text-sm text-center text-gray-600">Lorem ipsum dolor sit amet elit.</p>
+        {/* Light Feature Card */}
+        <div className="h-80 bg-white flex flex-col items-center justify-center p-8 text-center border border-gray-100">
+<div className="text-5xl text-[#138f44] mb-4">
+  <FaLeaf />
+</div>          <p className="text-xs font-semibold tracking-widest text-[#138f44] mb-2">WELLNESS</p>
+          <h3 className="text-2xl font-bold mb-3 text-gray-900">Personal Nutrition</h3>
+          <p className="text-sm text-gray-600">Custom plans tailored to your body and goals.</p>
         </div>
       </div>
 
-      <div className="bg-gray-900 py-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <button className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-8 hover:bg-green-600 transition-all duration-300 transform hover:scale-110 shadow-2xl">
-            <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          </button>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Trusted By More Then 650,000 Happy People</h2>
-          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">There are many variations of passages of Lorem Ipsum available</p>
-          <button className="bg-white text-gray-900 px-8 py-3.5 rounded hover:bg-gray-100 transition font-semibold">MAKE APPOINTMENT</button>
+      {/* CTA Section */}
+      <div className="relative bg-gradient-to-r from-[#0f172a] to-[#1e293b] py-24 text-center text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#138f4420,transparent_60%)]"></div>
+
+        <div className="relative max-w-3xl mx-auto px-6">
+          <button className="group relative w-20 h-20 bg-[#138f44] rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl transition hover:scale-110">
+  
+  {/* Pulse Animation Ring */}
+  <span className="absolute inset-0 rounded-full bg-[#138f44] opacity-30 animate-ping"></span>
+
+  {/* Play Icon */}
+  <FaPlay className="text-white text-xl ml-1 relative z-10" />
+</button>
+
+
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+            Trusted by More Than 650,000 Happy People
+          </h2>
+
+          <p className="text-gray-300 mb-10">
+            Join thousands who improved their lifestyle with our expert nutrition and fitness guidance.
+          </p>
+
+          <Link to="/contact" className="bg-white text-gray-900 px-10 py-4 rounded-full font-semibold hover:bg-gray-200 transition shadow-md">
+            Make Appointment
+          </Link>
         </div>
       </div>
     </section>
   );
-};
-
-export default Programs;
-
+}

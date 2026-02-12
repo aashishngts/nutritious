@@ -1,0 +1,658 @@
+import React, { useEffect, useState } from "react";
+import BlogCard from "./BlogCard";
+import { API_URL } from "../context/baseApi";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
+const AdminBlogPanel = ({ onLogout }) => {
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
+  const [editingBlog, setEditingBlog] = useState(null);
+  const [blogForm, setBlogForm] = useState({
+    title: "",
+    content: "",
+    coverImage: "",
+    category: "",
+  });
+  const [formLoading, setFormLoading] = useState(false);
+
+  // New states for image upload
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState("");
+
+  const blogsPerPage = 6;
+  const API_BASE_URL = `${API_URL}/api`;
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  // Fetch blogs
+  const fetchBlogs = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const token = localStorage.getItem("adminToken");
+
+      const response = await fetch(`${API_BASE_URL}/blogs`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.status === 401) {
+        onLogout();
+        throw new Error("Session expired. Please login again.");
+      }
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch blogs");
+      }
+
+      const result = await response.json();
+
+      if (result.success && result.data) {
+        const formattedBlogs = result.data.map((blog) => ({
+          id: blog._id || blog.id,
+          title: blog.title,
+          description: blog.content.substring(0, 120) + "...",
+          category: blog.category || "Health",
+          date: blog.formattedDate,
+          image: blog.coverImage,
+          fullContent: blog.content,
+        }));
+
+        setBlogs(formattedBlogs);
+      }
+    } catch (err) {
+      setError(err.message);
+      console.error("Error fetching blogs:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Handle image file selection
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        alert("❌ Image size should be less than 5MB");
+        return;
+      }
+
+      // Validate file type
+      const validTypes = [
+        "image/jpeg",
+        "image/jpg",
+        "image/png",
+        "image/gif",
+        "image/webp",
+      ];
+      if (!validTypes.includes(file.type)) {
+        alert("❌ Please upload a valid image file (JPG, PNG, GIF, WEBP)");
+        return;
+      }
+
+      setImageFile(file);
+
+      // Create preview
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Add new blog
+  const handleAddBlog = async (e) => {
+    e.preventDefault();
+    setFormLoading(true);
+
+    try {
+      const token = localStorage.getItem("adminToken");
+
+      // Create FormData to send image file
+      const formData = new FormData();
+      formData.append("title", blogForm.title);
+      formData.append("content", blogForm.content);
+      formData.append("category", blogForm.category);
+
+      // Add image file if selected
+      if (imageFile) {
+        formData.append("coverImage", imageFile);
+      }
+
+      const response = await fetch(`${API_BASE_URL}/blogs`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          // Don't set Content-Type - browser will set it with boundary for FormData
+        },
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        alert("✅ Blog added successfully!");
+        setBlogForm({ title: "", content: "", coverImage: "", category: "" });
+        setImageFile(null);
+        setImagePreview("");
+        fetchBlogs();
+        setShowAdminPanel(false);
+      } else {
+        alert("❌ " + (result.message || "Failed to add blog"));
+      }
+    } catch (err) {
+      alert("❌ Error adding blog: " + err.message);
+    } finally {
+      setFormLoading(false);
+    }
+  };
+
+  // Update blog
+  const handleUpdateBlog = async (e) => {
+    e.preventDefault();
+    setFormLoading(true);
+
+    try {
+      const token = localStorage.getItem("adminToken");
+
+      // Create FormData to send image file
+      const formData = new FormData();
+      formData.append("title", blogForm.title);
+      formData.append("content", blogForm.content);
+      formData.append("category", blogForm.category);
+
+      // Add image file if new one selected
+      if (imageFile) {
+        formData.append("coverImage", imageFile);
+      }
+      const response = await fetch(`${API_BASE_URL}/blogs/${editingBlog.id}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          // Don't set Content-Type - browser will set it with boundary for FormData
+        },
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        alert("✅ Blog updated successfully!");
+        setBlogForm({ title: "", content: "", coverImage: "", category: "" });
+        setEditingBlog(null);
+        setImageFile(null);
+        setImagePreview("");
+        fetchBlogs();
+        setShowAdminPanel(false);
+      } else {
+        alert("❌ " + (result.message || "Failed to update blog"));
+      }
+    } catch (err) {
+      alert("❌ Error updating blog: " + err.message);
+    } finally {
+      setFormLoading(false);
+    }
+  };
+
+  // Delete blog
+  const handleDeleteBlog = async (blogId) => {
+    if (!window.confirm("⚠️ Are you sure you want to delete this blog?")) {
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem("adminToken");
+
+      const response = await fetch(`${API_BASE_URL}/blogs/${blogId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        alert("✅ Blog deleted successfully!");
+        fetchBlogs();
+      } else {
+        alert("❌ " + (result.message || "Failed to delete blog"));
+      }
+    } catch (err) {
+      alert("❌ Error deleting blog: " + err.message);
+    }
+  };
+
+  // Edit blog handler
+  const handleEditClick = (blog) => {
+    setEditingBlog(blog);
+    setBlogForm({
+      title: blog.title,
+      content: blog.fullContent,
+      coverImage: blog.image,
+      category: blog.category,
+    });
+    setImageFile(null);
+    setImagePreview("");
+    setShowAdminPanel(true);
+  };
+
+  // Cancel edit
+  const handleCancelEdit = () => {
+    setEditingBlog(null);
+    setBlogForm({ title: "", content: "", coverImage: "", category: "" });
+    setImageFile(null);
+    setImagePreview("");
+    setShowAdminPanel(false);
+  };
+
+  // Remove selected image
+  const handleRemoveImage = () => {
+    setImageFile(null);
+    setImagePreview("");
+    setBlogForm({ ...blogForm, coverImage: "" });
+  };
+
+  // Pagination
+  const indexOfLastBlog = currentPage * blogsPerPage;
+  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+  const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
+  const totalPages = Math.ceil(blogs.length / blogsPerPage);
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  // Admin Panel Modal
+  if (showAdminPanel) {
+    return (
+      <section className="w-full bg-white py-20 min-h-screen">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="bg-white border-2 border-[#f0f0f0] rounded-lg p-8 shadow-lg">
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-3xl font-extrabold text-[#222]">
+                {editingBlog ? "✏️ Edit Blog" : "➕ Add New Blog"}
+              </h2>
+              <button
+                onClick={handleCancelEdit}
+                className="px-4 py-2 bg-gray-500 text-white font-semibold rounded hover:bg-gray-600 transition"
+              >
+                ✕ Close
+              </button>
+            </div>
+
+            <form onSubmit={editingBlog ? handleUpdateBlog : handleAddBlog}>
+              {/* Title */}
+              <div className="mb-5">
+                <label className="block text-[#222] font-semibold mb-2">
+                  Title
+                </label>
+                <input
+                  type="text"
+                  value={blogForm.title}
+                  onChange={(e) =>
+                    setBlogForm({ ...blogForm, title: e.target.value })
+                  }
+                  placeholder="Enter blog title"
+                  required
+                  className="w-full px-4 py-3 border-2 border-[#e0e0e0] rounded focus:outline-none focus:border-[#86b817] transition"
+                />
+              </div>
+
+              {/* Category */}
+              <div className="mb-5">
+                <label className="block text-[#222] font-semibold mb-2">
+                  Category
+                </label>
+                <input
+                  type="text"
+                  value={blogForm.category}
+                  onChange={(e) =>
+                    setBlogForm({ ...blogForm, category: e.target.value })
+                  }
+                  placeholder="e.g. Health, Fitness, Nutrition"
+                  className="w-full px-4 py-3 border-2 border-[#e0e0e0] rounded focus:outline-none focus:border-[#86b817] transition"
+                />
+              </div>
+
+              {/* Image Upload */}
+              <div className="mb-5">
+                <label className="block text-[#222] font-semibold mb-2">
+                  Cover Image
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="w-full px-4 py-3 border-2 border-[#e0e0e0] rounded focus:outline-none focus:border-[#86b817] transition file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-[#86b817] file:text-white file:cursor-pointer hover:file:bg-[#75a015]"
+                />
+
+                {/* Image Preview */}
+                {(imagePreview || blogForm.coverImage) && (
+                  <div className="mt-3 relative">
+                    <img
+                      src={imagePreview || blogForm.coverImage}
+                      alt="Preview"
+                      className="w-full h-48 object-cover rounded"
+                      onError={(e) => {
+                        e.target.style.display = "none";
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={handleRemoveImage}
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-600 transition"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                )}
+
+                <p className="text-xs text-gray-500 mt-2">
+                  Supported formats: JPG, PNG, GIF, WEBP (Max 5MB)
+                </p>
+              </div>
+
+              {/* CKEditor for Content */}
+              <div className="mb-6">
+                <label className="block text-[#222] font-semibold mb-2">
+                  Content
+                </label>
+                <div className="border-2 border-[#e0e0e0] rounded focus-within:border-[#86b817] transition">
+                  <CKEditor
+                    editor={ClassicEditor}
+                    data={blogForm.content}
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      setBlogForm({ ...blogForm, content: data });
+                    }}
+                    config={{
+                      toolbar: [
+                        "heading",
+                        "|",
+                        "bold",
+                        "italic",
+                        "link",
+                        "bulletedList",
+                        "numberedList",
+                        "|",
+                        "blockQuote",
+                        "insertTable",
+                        "|",
+                        "undo",
+                        "redo",
+                      ],
+                      placeholder: "Write your blog content here...",
+                      heading: {
+                        options: [
+                          {
+                            model: "paragraph",
+                            title: "Paragraph",
+                            class: "ck-heading_paragraph",
+                          },
+                          {
+                            model: "heading1",
+                            view: "h1",
+                            title: "Heading 1",
+                            class: "ck-heading_heading1",
+                          },
+                          {
+                            model: "heading2",
+                            view: "h2",
+                            title: "Heading 2",
+                            class: "ck-heading_heading2",
+                          },
+                          {
+                            model: "heading3",
+                            view: "h3",
+                            title: "Heading 3",
+                            class: "ck-heading_heading3",
+                          },
+                        ],
+                      },
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Submit Buttons */}
+              <div className="flex gap-3">
+                <button
+                  type="submit"
+                  disabled={formLoading}
+                  className="flex-1 bg-[#86b817] text-white font-bold py-3 rounded hover:bg-[#75a015] transition disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {formLoading
+                    ? "Saving..."
+                    : editingBlog
+                      ? "Update Blog"
+                      : "Add Blog"}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleCancelEdit}
+                  className="px-6 py-3 bg-gray-500 text-white font-semibold rounded hover:bg-gray-600 transition"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Loading
+  if (loading) {
+    return (
+      <section className="w-full bg-white py-20">
+        <div className="max-w-[1200px] mx-auto px-4">
+          <div className="flex justify-center items-center min-h-[400px]">
+            <div className="text-center">
+              <div className="w-16 h-16 border-4 border-[#138f44] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <p className="text-[#666] text-lg">Loading blogs...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Error
+  if (error) {
+    return (
+      <section className="w-full bg-white py-20">
+        <div className="max-w-[1200px] mx-auto px-4">
+          <div className="flex justify-center items-center min-h-[400px]">
+            <div className="text-center">
+              <p className="text-red-500 text-lg mb-4">Error: {error}</p>
+              <div className="flex gap-3 justify-center">
+                <button
+                  onClick={fetchBlogs}
+                  className="px-6 py-3 bg-[#86b817] text-white font-semibold rounded hover:bg-[#75a015] transition"
+                >
+                  Retry
+                </button>
+                <button
+                  onClick={onLogout}
+                  className="px-6 py-3 bg-red-500 text-white font-semibold rounded hover:bg-red-600 transition"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="w-full bg-white py-20">
+      <div className="max-w-[1200px] mx-auto px-4">
+        {/* Admin Header */}
+        <div className="relative flex justify-between items-center mb-10 mt-8 bg-gradient-to-r from-[#16a44f] to-[#117e40] p-7 rounded-2xl shadow-xl overflow-hidden">
+
+  {/* Soft glow overlay */}
+  <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
+
+  <div className="relative flex items-center gap-4">
+    <div>
+      <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-wide drop-shadow">
+        Admin Dashboard
+      </h3>
+      <p className="text-white/80 text-sm mt-1">
+        Manage all your blogs here
+      </p>
+    </div>
+  </div>
+
+  <div className="relative flex gap-3">
+    <button
+      onClick={() => setShowAdminPanel(true)}
+      className="md:px-5 md:py-2.5 px-4 py-2 bg-white text-[#138f44] font-semibold rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300"
+    >
+      + Add Blog
+    </button>
+
+    <button
+      onClick={onLogout}
+      className="md:px-5 md:py-2.5 px-4 py-2 bg-red-500 text-white font-semibold rounded-xl shadow-lg hover:bg-red-600 hover:scale-105 transition-all duration-300"
+    >
+      Logout
+    </button>
+  </div>
+</div>
+
+
+        {/* Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <div className="bg-white/80 backdrop-blur-sm border border-[#e8f2d8] rounded-2xl p-6 text-center shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <h4 className="text-4xl font-extrabold text-[#86b817] mb-2 drop-shadow-sm">
+              {blogs.length}
+            </h4>
+            <p className="text-gray-600 tracking-wide">Total Blogs</p>
+          </div>
+
+          <div className="bg-white/80 backdrop-blur-sm border border-blue-100 rounded-2xl p-6 text-center shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <h4 className="text-4xl font-extrabold text-blue-500 mb-2 drop-shadow-sm">
+              {new Set(blogs.map((b) => b.category)).size}
+            </h4>
+            <p className="text-gray-600 tracking-wide">Categories</p>
+          </div>
+
+          <div className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-2xl p-6 text-center shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <h4 className="text-4xl font-extrabold text-purple-500 mb-2 drop-shadow-sm">
+              {totalPages}
+            </h4>
+            <p className="text-gray-600 tracking-wide">Pages</p>
+          </div>
+        </div>
+
+        {/* Heading */}
+        <p className="text-[#138f44] uppercase tracking-[3px] text-[13px] font-semibold mb-3 text-center flex justify-center items-center gap-2">
+          <span className="w-[2px] h-[16px] bg-[#138f44] inline-block"></span>
+          Manage Articles
+        </p>
+
+        <h2 className="text-[56px] md:text-[64px] font-extrabold text-[#222] text-center leading-[1.1] mb-14">
+          All Blogs
+        </h2>
+
+        {/* Blog Cards */}
+        {currentBlogs.length > 0 ? (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {currentBlogs.map((blog) => (
+                <div key={blog.id} className="relative group">
+                  <BlogCard blog={blog} />
+
+                  {/* Admin Controls */}
+                  <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button
+                      onClick={() => handleEditClick(blog)}
+                      className="bg-blue-500 text-white px-3 py-2 rounded text-sm font-semibold hover:bg-blue-600 transition shadow-lg"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDeleteBlog(blog.id)}
+                      className="bg-red-500 text-white px-3 py-2 rounded text-sm font-semibold hover:bg-red-600 transition shadow-lg"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center gap-3 mt-14">
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="w-12 h-12 bg-[#f7f7f7] text-[#222] font-semibold hover:bg-[#86b817] hover:text-white transition disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  ←
+                </button>
+
+                {[...Array(totalPages)].map((_, index) => {
+                  const page = index + 1;
+                  return (
+                    <button
+                      key={page}
+                      onClick={() => handlePageChange(page)}
+                      className={`w-12 h-12 font-semibold transition ${
+                        currentPage === page
+                          ? "bg-[#86b817] text-white"
+                          : "bg-[#f7f7f7] text-[#222] hover:bg-[#86b817] hover:text-white"
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  );
+                })}
+
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className="w-12 h-12 bg-[#f7f7f7] text-[#222] font-semibold hover:bg-[#86b817] hover:text-white transition disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  →
+                </button>
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="text-center py-20">
+            <p className="text-[#666] text-xl mb-4">No blogs found</p>
+            <button
+              onClick={() => setShowAdminPanel(true)}
+              className="px-6 py-3 bg-[#86b817] text-white font-semibold rounded hover:bg-[#75a015] transition"
+            >
+              Add First Blog
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default AdminBlogPanel;

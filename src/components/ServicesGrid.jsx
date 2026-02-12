@@ -1,74 +1,102 @@
 import React from "react";
 
-const ServicesGrid = () => {
+import {
+  FaUtensils,
+  FaPersonCircleMinus    ,
+  FaDumbbell,
+  FaPersonRunning,
+  FaLeaf,
+  FaHeartPulse,
+} from "react-icons/fa6";
+
+
+
+
+
+
+export default function ServicesGrid() {
   const services = [
-    {
-      title: "Personal Nutrition Plan",
-      desc: "Customized meal plans based on your goals, lifestyle and body needs.",
-      icon: "🥗",
-    },
-    {
-      title: "Weight Loss Program",
-      desc: "Healthy & sustainable fat loss journey with weekly progress tracking.",
-      icon: "⚖️",
-    },
-    {
-      title: "Muscle Gain Nutrition",
-      desc: "High-protein structured diet + performance-focused routine support.",
-      icon: "💪",
-    },
-    {
-      title: "Diabetes Diet Guidance",
-      desc: "Balanced meals for sugar control with smart carb management tips.",
-      icon: "🩺",
-    },
-    {
-      title: "Sports Nutrition Support",
-      desc: "Pre-workout & post-workout nutrition strategies to boost stamina.",
-      icon: "🏋️",
-    },
-    {
-      title: "Healthy Lifestyle Coaching",
-      desc: "Habits + food + mindset coaching to build a consistent routine.",
-      icon: "🌿",
-    },
-  ];
+  {
+    title: "Personal Nutrition Plan",
+    desc: "Customized meal plans based on your goals, lifestyle and body needs.",
+    icon: <FaUtensils />,
+  },
+  {
+    title: "Weight Loss Program",
+    desc: "Healthy & sustainable fat loss journey with weekly progress tracking.",
+    icon: <FaPersonCircleMinus     />,
+  },
+  {
+    title: "Muscle Gain Nutrition",
+    desc: "High-protein structured diet + performance-focused routine support.",
+    icon: <FaDumbbell />,
+  },
+  {
+    title: "Diabetes Diet Guidance",
+    desc: "Balanced meals for sugar control with smart carb management tips.",
+    icon: <FaHeartPulse />,
+  },
+  {
+    title: "Sports Nutrition Support",
+    desc: "Pre-workout & post-workout nutrition strategies to boost stamina.",
+    icon: <FaPersonRunning />,
+  },
+  {
+    title: "Healthy Lifestyle Coaching",
+    desc: "Habits + food + mindset coaching to build a consistent routine.",
+    icon: <FaLeaf />,
+  },
+];
+
 
   return (
-    <section className="w-full bg-white py-20">
-      <div className="max-w-[1200px] mx-auto px-4">
-        {/* Heading */}
-        <p className="text-[#86b817] uppercase tracking-[3px] text-[13px] font-semibold mb-3 text-center flex justify-center items-center gap-2">
-          <span className="w-[2px] h-[16px] bg-[#86b817] inline-block"></span>
-          What We Offer
-        </p>
+    <section className="relative mt-14 bg-white overflow-hidden">
+      
+      {/* Background Glow */}
+      <div className="absolute -top-40 right-0 w-[500px] h-[500px] bg-[#138f44]/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#86b817]/10 rounded-full blur-3xl"></div>
 
-        <h2 className="text-[56px] md:text-[64px] font-extrabold text-[#222] text-center leading-[1.1] mb-14">
-          Our Nutrition Services
-        </h2>
+      <div className="relative max-w-7xl mx-auto px-6">
+        
+        {/* Section Heading */}
+        <div className="text-center mb-20">
+          <p className="text-[#138f44] uppercase tracking-[4px] text-sm font-semibold mb-4">
+            OUR SERVICES
+          </p>
+
+          <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
+            Personalized Nutrition <br />
+            <span className="text-[#138f44]">That Fits Your Life</span>
+          </h2>
+
+          <p className="text-gray-500 text-lg mt-6 max-w-2xl mx-auto">
+            Every body is different. Our nutrition solutions are tailored to your goals,
+            lifestyle, and health needs for sustainable results.
+          </p>
+        </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((item, idx) => (
             <div
               key={idx}
-              className="bg-[#f7f7f7] p-10 hover:shadow-md transition"
+              className="group bg-[#f8fbf9] p-10 rounded-3xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
             >
-              <div className="w-[80px] h-[80px] bg-white rounded-full flex items-center justify-center mb-7 relative">
-                <span className="absolute -left-2 -top-2 w-10 h-10 bg-[#86b817] rounded-full"></span>
-                <span className="relative text-[34px]">{item.icon}</span>
-              </div>
+              <div className="w-16 h-16 flex items-center justify-center rounded-2xl bg-white shadow-md text-3xl text-[#138f44] mb-6 group-hover:scale-110 group-hover:bg-[#138f44] group-hover:text-white transition">
+  {item.icon}
+</div>
 
-              <h3 className="text-[22px] font-bold text-[#222] mb-4">
+
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
                 {item.title}
               </h3>
 
-              <p className="text-[#777] text-[15px] leading-7 mb-7">
+              <p className="text-gray-600 leading-relaxed mb-6">
                 {item.desc}
               </p>
 
-              <button className="text-[#86b817] uppercase tracking-[2px] text-[13px] font-semibold underline underline-offset-4">
-                Read More
+              <button className="text-[#138f44] font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+                Learn More →
               </button>
             </div>
           ))}
@@ -76,6 +104,4 @@ const ServicesGrid = () => {
       </div>
     </section>
   );
-};
-
-export default ServicesGrid;
+}
