@@ -74,7 +74,7 @@ export default function Programs() {
 </button>
 
 
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-2xl lg:text-5xl font-bold mb-6">
             Trusted by More Than 650,000 Happy People
           </h2>
 

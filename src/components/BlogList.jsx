@@ -34,6 +34,7 @@ const BlogList = () => {
             category: blog.category || "Health",
             date: blog.formattedDate,
             image: blog.coverImage,
+            fullContent: blog.content,
           })) || []
         );
       } else {
@@ -86,7 +87,7 @@ const BlogList = () => {
   }
 
   return (
-    <section className="relative py-28 bg-gradient-to-b from-white to-[#f6fbf7] overflow-hidden">
+    <section className="relative py-12 bg-gradient-to-b from-white to-[#f6fbf7] overflow-hidden">
       
       {/* Soft background glow */}
       <div className="absolute -top-32 right-0 w-[400px] h-[400px] bg-[#86b817]/10 blur-3xl rounded-full"></div>
@@ -94,14 +95,14 @@ const BlogList = () => {
       <div className="relative max-w-7xl mx-auto px-6">
         
         {/* Heading */}
-        <div className="text-center mb-20">
+        <div className="text-center md:mb-20 mb-10">
           <p className="text-[#138f44] uppercase tracking-[4px] text-sm font-semibold mb-4">
             Latest Articles
           </p>
 
-          <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
-            Health & Nutrition <br />
-            <span className="text-[#138f44]">Insights</span>
+          <h2 className="md:text-5xl text-2xl   font-extrabold text-gray-900 leading-tight">
+            Health & Nutrition <br className="hidden md:block"/>
+            <span className="text-[#138f44]"> Insights</span>
           </h2>
         </div>
 

@@ -9,11 +9,11 @@ const ServicesCTA = () => {
 
       <div className="relative max-w-3xl mx-auto px-6 text-center">
         
-        <p className="text-[#86b817] uppercase tracking-[4px] text-sm font-semibold mb-4">
+        <p className="text-[#138f44] uppercase tracking-[4px] text-sm font-semibold mb-4">
           Start Your Wellness Journey
         </p>
 
-        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+        <h2 className="md:text-5xl text-2xl  font-extrabold text-gray-900 leading-tight mb-6">
           Your Healthier Life <br />
           <span className="text-[#138f44]">Begins Today</span>
         </h2>

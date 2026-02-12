@@ -6,9 +6,7 @@ const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -19,54 +17,30 @@ const Navigation = () => {
         scrolled ? "bg-white shadow-lg" : "bg-white shadow-sm"
       }`}
     >
-      <div className="max-w-8xl mx-auto px-10 sm:px-6 lg:px-14 ">
+      <div className="max-w-8xl mx-auto px-10 sm:px-6 lg:px-14">
         <div className="flex justify-between items-center h-20">
+          
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 cursor-pointer">
-           <img
-  src="https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/1024px/1f33f.png"
-  alt="leaf icon"
-  className="w-7 h-7"
-/>
-
-            <span className="text-2xl font-bold text-gray-900">Nutritius</span>
+            <img
+              src="https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/1024px/1f33f.png"
+              alt="leaf icon"
+              className="w-7 h-7"
+            />
+            <span className="text-2xl font-bold text-gray-900">
+              Nutritius
+            </span>
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link
-              to="/"
-              className="text-gray-700 hover:text-green-500 transition-colors duration-200 font-medium"
-            >
-              Home
-            </Link>
+            <Link to="/">Home</Link>
+            <Link to="/about">About Us</Link>
+            <Link to="/services">Services</Link>
+            <Link to="/blogs">Blog</Link>
+            <Link to="/contact">Contact Us</Link>
 
-            <Link to="/about"
-              className="text-gray-700 hover:text-green-500 transition-colors duration-200 font-medium"
-            >
-              About Us
-            </Link>
-
-            <Link to="/services"
-              className="text-gray-700 hover:text-green-500 transition-colors duration-200 font-medium"
-            >
-              Services
-            </Link>
-
-            <Link to="/blogs"
-              className="text-gray-700 hover:text-green-500 transition-colors duration-200 font-medium"
-            >
-              Blog
-            </Link>
-
-            <Link
-              to="/contact"
-              className="text-gray-700 hover:text-green-500 transition-colors duration-200 font-medium"
-            >
-              Contact Us
-            </Link>
-
-            <button className="bg-green-500 text-white px-6 py-2.5 rounded hover:bg-green-600 transition-all duration-200 transform hover:scale-105 flex items-center space-x-2 shadow-md hover:shadow-lg">
+            <button className="appointment-btn flex items-center space-x-2">
               <svg
                 className="w-4 h-4"
                 fill="currentColor"
@@ -74,17 +48,21 @@ const Navigation = () => {
               >
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
               </svg>
-              <span className="font-semibold">Appointment </span>
+              <span>Appointment</span>
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Button */}
           <button
-            className="md:hidden p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className={`md:hidden flex items-center justify-center w-11 h-11 rounded-full transition-all duration-300 ${
+              mobileMenuOpen
+                ? "bg-red-500 hover:bg-red-600"
+                : "bg-green-500 hover:bg-green-600"
+            }`}
           >
             <svg
-              className="w-6 h-6 text-gray-700"
+              className="w-6 h-6 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -110,48 +88,22 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4">
-            <div className="flex flex-col space-y-4">
-              <Link
-                to="/"
-                className="text-gray-700 hover:text-green-500 transition-colors font-medium"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Home
-              </Link>
-
-              <a
-                href="/about"
-                className="text-gray-700 hover:text-green-500 transition-colors font-medium"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                About Us
-              </a>
-
-              <a
-                href="/services"
-                className="text-gray-700 hover:text-green-500 transition-colors font-medium"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Services
-              </a>
-
-              <a
-                href="/blogs"
-                className="text-gray-700 hover:text-green-500 transition-colors font-medium"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Blog
-              </a>
-
-              <Link
-                to="/contact"
-                className="text-gray-700 hover:text-green-500 transition-colors font-medium"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Contact Us
-              </Link>
-            </div>
+          <div className="md:hidden py-4 flex flex-col space-y-4">
+            <Link to="/" onClick={() => setMobileMenuOpen(false)}>
+              Home
+            </Link>
+            <Link to="/about" onClick={() => setMobileMenuOpen(false)}>
+              About Us
+            </Link>
+            <Link to="/services" onClick={() => setMobileMenuOpen(false)}>
+              Services
+            </Link>
+            <Link to="/blogs" onClick={() => setMobileMenuOpen(false)}>
+              Blog
+            </Link>
+            <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
+              Contact Us
+            </Link>
           </div>
         )}
       </div>

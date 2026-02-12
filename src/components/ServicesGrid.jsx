@@ -50,7 +50,7 @@ export default function ServicesGrid() {
 
 
   return (
-    <section className="relative mt-14 bg-white overflow-hidden">
+    <section className="relative pt-14 bg-white overflow-hidden">
       
       {/* Background Glow */}
       <div className="absolute -top-40 right-0 w-[500px] h-[500px] bg-[#138f44]/10 rounded-full blur-3xl"></div>
@@ -64,7 +64,7 @@ export default function ServicesGrid() {
             OUR SERVICES
           </p>
 
-          <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
+          <h2 className="md:text-5xl text-2xl  font-extrabold text-gray-900 leading-tight">
             Personalized Nutrition <br />
             <span className="text-[#138f44]">That Fits Your Life</span>
           </h2>

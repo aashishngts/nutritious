@@ -62,16 +62,15 @@ export default function Hero() {
       {/* Dark Overlay */}
 <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
 
-
-      {/* Content */}
-      <div className="relative z-10  lg:mt-10  flex h-full items-center justify-center lg:justify-start px-6 sm:px-12 lg:px-20 max-w-full mx-auto">
+      {/* Content */} 
+      <div className="relative z-10  lg:mt-10 mt-14 flex h-full items-center justify-center lg:justify-start px-6 sm:px-12 lg:px-20 max-w-full mx-auto">
         <div className="captiontext   text-center lg:text-left text-white animate-fadeIn">
           
           <span className="tagsline inline-block mb-4 rounded-full bg-[#86b817]/20 px-5 py-2 text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#86b817]">
             {slides[current].tag}
           </span>
 
-          <h1 className="text-xl mt-5 sm:text-2xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+          <h1 className="text-xl mt-5 sm:text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
             {slides[current].title}
           </h1>
 
@@ -80,7 +79,7 @@ export default function Hero() {
           </p>
 
           <div className="flex flex md:pt-0 pt-24 flex-row gap-4 justify-center lg:justify-start">
-            <Link to="/contact" className="md:button1 rounded-lg bg-[#138f44] md:px-8 py-3 px-3 font-semibold uppercase tracking-wide hover:ease-out transition">
+            <Link to="/contact" className="md:button1 rounded-lg bg-[#138f44] md:px-8 py-3 items-center px-3 font-semibold uppercase tracking-wide hover:ease-out transition">
               Get Started
             </Link>
 
