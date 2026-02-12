@@ -17,7 +17,7 @@ const Navigation = () => {
         scrolled ? "bg-white shadow-lg" : "bg-white shadow-sm"
       }`}
     >
-      <div className="max-w-8xl mx-auto px-10 sm:px-6 lg:px-14">
+      <div className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-14">
         <div className="flex justify-between items-center h-20">
           
           {/* Logo */}
