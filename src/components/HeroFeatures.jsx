@@ -4,17 +4,17 @@ const features = [
   {
     title: "Personalized Nutrition",
     desc: "Smart meal plans tailored to your body type, lifestyle, and wellness goals for lasting results.",
-    icon: "../src/assets/healthydietplate.png",
+    icon: "../healthydietplate.png",
   },
   {
     title: "Healthy Diet Programs",
     desc: "Sustainable eating habits designed to boost energy, improve digestion, and support overall health.",
-    icon: "../src/assets/healthydietimg.png",
+    icon: "../healthydietimg.png",
   },
   {
     title: "Weight Loss Program",
     desc: "Science-backed strategies that help you burn fat, build confidence, and maintain a healthy weight.",
-    icon: "../src/assets/weightlossimg.png",
+    icon: "../weightlossimg.png",
   },
 ];
 
