@@ -110,3 +110,12 @@ color:#000
   animation: fadeUp 0.8s ease-out forwards;
 }
 
+
+@keyframes fade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-fade {
+  animation: fade 1s ease-in-out;
+}

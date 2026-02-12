@@ -27,8 +27,7 @@ export default function Testimonials() {
       {/* Soft Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#138f44]/10 rounded-full blur-3xl"></div>
 
-      <div className="relative max-w-6xl mx-auto px-6">
-        {/* Heading */}
+      <div className="relative max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-14">        {/* Heading */}
         <div className="text-center md:mb-20 mb-10">
           <p className="text-[#138f44] font-semibold mb-3 uppercase tracking-widest text-sm">
             Testimonials

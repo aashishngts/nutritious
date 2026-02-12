@@ -21,7 +21,7 @@ export default function Blog() {
       {/* Soft Background Accent */}
       <div className="absolute -top-32 left-0 w-96 h-96 bg-[#138f44]/10 rounded-full blur-3xl"></div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-14">
         {/* Heading */}
         <div className="text-center mb-16">
           <p className="text-[#138f44] font-semibold mb-3 uppercase tracking-widest text-sm">

@@ -16,7 +16,7 @@ const ServicesWhyChoose = () => {
       <div className="absolute -left-32 top-0 w-[450px] h-[450px] bg-[#86b817]/10 rounded-full blur-3xl"></div>
       <div className="absolute right-0 bottom-0 w-[400px] h-[400px] bg-[#138f44]/10 rounded-full blur-3xl"></div>
 
-      <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <div className="relative max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-14 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
         {/* Left Image */}
         <div className="relative">
@@ -24,7 +24,7 @@ const ServicesWhyChoose = () => {
           <img
             src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1200&q=80"
             alt="Healthy food"
-            className="relative w-full h-[600px] object-cover rounded-3xl shadow-2xl"
+            className="relative w-full h-[260px] md:h-[500px] object-cover rounded-3xl shadow-2xl"
           />
         </div>
 

@@ -26,14 +26,14 @@ const AboutExpertise = () => {
   ];
 
   return (
-    <section className="w-full bg-white py-20 relative">
-      <div className="max-w-[1200px] mx-auto px-4">
+    <section className="w-full bg-white py-12 md:py-20 relative">
+      <div className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-14">
         <p className="text-[#138f44] uppercase tracking-[3px] text-[13px] font-semibold mb-3 text-center flex justify-center items-center gap-2">
           <span className="w-[2px] h-[16px] bg-[#138f44] inline-block"></span>
           Why Choose Us
         </p>
 
-        <h2 className="md:text-5xl text-2xl  font-extrabold text-[#222] text-center leading-[1.1] mb-16">
+        <h2 className="md:text-5xl text-2xl font-extrabold text-[#222] text-center leading-[1.1] mb-8 md:mb-16">
           Our Main Areas Of Expertise
         </h2>
 
@@ -41,7 +41,7 @@ const AboutExpertise = () => {
           {items.map((item, idx) => (
             <div
               key={idx}
-              className="group bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+              className="group bg-white border border-gray-100 rounded-2xl p-5 md:p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
             >
               <div className="w-16 h-16 rounded-xl bg-[#86b817]/10 flex items-center justify-center mb-6 transition group-hover:bg-[#138f44] group-hover:text-white">
                 <div className="text-3xl text-[#138f44] group-hover:text-white transition">

@@ -24,7 +24,7 @@ function Home() {
       <Projects />
       <Steps />
       <Testimonials />
-      <CTA />
+      {/* <CTA /> */}
       <Blog />
       <Footer />
     </div>

@@ -6,7 +6,7 @@ const GetInTouch = () => {
       {/* Soft Background Glow */}
       <div className="absolute -top-32 right-0 w-[400px] h-[400px] bg-[#86b817]/10 rounded-full blur-3xl"></div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-14">
         <div className="grid lg:grid-cols-2 gap-16 items-stretch">
           {/* Left Image */}
           <div className="relative">

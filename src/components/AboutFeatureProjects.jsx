@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 const AboutFeatureProjects = () => {
   return (
     <section className="w-full bg-[#138f44] py-20">
-      <div className="max-w-[1200px] mx-auto px-4">
+      <div className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-14">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* Left White Content */}
-          <div className="bg-white p-14">
+          <div className="bg-white p-6 md:p-14">
             <p className="text-[#138f44] uppercase tracking-[3px] text-[13px] font-semibold mb-2 flex items-center gap-2">
               <span className="w-[2px] h-[16px] bg-[#86b817] inline-block"></span>
               Explore Our Projects

@@ -23,8 +23,8 @@ const ContactInfoCards = () => {
 
 
   return (
-    <section className="md:py-20 py-10 bg-gradient-to-b from-white p-3  md:px-8 to-[#f6fbf7]">
-      <div className="md:max-w-6xl mx-auto  grid md:grid-cols-3 gap-8">
+    <section className="md:py-20 py-10 bg-gradient-to-b from-white to-[#f6fbf7]">
+      <div className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-14 grid md:grid-cols-3 gap-8">
         {cards.map((item, idx) => (
           <div
             key={idx}

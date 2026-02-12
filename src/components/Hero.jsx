@@ -55,17 +55,17 @@ export default function Hero() {
     <section className="lg:bannerhomepage relative h-[75vh] sm:h-[85vh] lg:h-screen w-full overflow-hidden font-poppins">
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center transition-all duration-1000"
+        key={current}
+        className="absolute inset-0 bg-cover bg-center animate-fade"
         style={{ backgroundImage: `url(${slides[current].bg})` }}
       />
 
       {/* Dark Overlay */}
-<div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
 
-      {/* Content */} 
+      {/* Content */}
       <div className="relative z-10  lg:mt-10 mt-14 flex h-full items-center justify-center lg:justify-start px-6 sm:px-12 lg:px-20 max-w-full mx-auto">
-        <div className="captiontext   text-center lg:text-left text-white animate-fadeIn">
-          
+        <div className="captiontext text-center lg:text-left text-white animate-fadeIn max-w-xl lg:max-w-3xl">
           <span className="tagsline inline-block mb-4 rounded-full bg-[#86b817]/20 px-5 py-2 text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#86b817]">
             {slides[current].tag}
           </span>
@@ -78,17 +78,23 @@ export default function Hero() {
             {slides[current].desc}
           </p>
 
-          <div className="flex flex md:pt-0 pt-24 flex-row gap-4 justify-center lg:justify-start">
-            <Link to="/contact" className="md:button1 rounded-lg bg-[#138f44] md:px-8 py-3 items-center px-3 font-semibold uppercase tracking-wide hover:ease-out transition">
+          <div className="flex flex-row gap-4 justify-center lg:justify-start mt-6">
+            <Link
+              to="/contact"
+              className="rounded-lg bg-[#138f44] px-4 py-2 text-sm md:text-base md:px-8 md:py-3 font-semibold uppercase tracking-wide transition"
+            >
               Get Started
             </Link>
 
-            <Link to="/services" className="button2 rounded-lg border border-white/40 bg-white/10 lg:px-8 px-3 py-3 font-semibold uppercase tracking-wide backdrop-blur hover:bg-white/20 transition">
+            <Link
+              to="/services"
+              className="rounded-lg border border-white/40 bg-white/10 px-4 py-2 text-sm md:text-base md:px-8 md:py-3 font-semibold uppercase tracking-wide backdrop-blur transition"
+            >
               Learn More
             </Link>
           </div>
 
-          {/* Dots */}  
+          {/* Dots */}
           <div className="dotsbutton flex justify-center lg:justify-start gap-3 mt-10">
             {slides.map((_, i) => (
               <button

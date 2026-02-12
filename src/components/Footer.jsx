@@ -26,7 +26,7 @@ export default function Footer() {
       <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#138f44]/10 rounded-full blur-3xl"></div>
 
       <div className="relative py-20">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-14">
+        <div className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-14 grid grid-cols-1 md:grid-cols-4 gap-14">
           
           {/* Brand */}
           <div>

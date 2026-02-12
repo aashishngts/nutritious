@@ -3,24 +3,24 @@ import { FaAppleAlt, FaDumbbell } from "react-icons/fa";
 import { Link } from "react-router-dom";
 export default function AboutIntro() {
   return (
-    <section className="relative bg-[#f9fbf8] py-20 px-6 overflow-hidden">
+    <section className="relative bg-[#f9fbf8] py-20 overflow-hidden">
       {/* Subtle Side Accent Background */}
       <div className="absolute right-0 top-0 h-full w-1/3 bg-[#138f44]/5 -z-10"></div>
 
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-14 grid lg:grid-cols-2 gap-16 items-center">
         
         {/* Image Side */}
         <div className="relative flex justify-center lg:justify-start">
           <img
             src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80"
             alt="Healthy food"
-            className="w-[420px] h-[520px] object-cover rounded-2xl shadow-lg"
+            className="w-full max-w-[520px] h-auto md:h-[520px] object-cover rounded-2xl shadow-lg"
           />
 
           <img
             src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=700&q=80"
             alt="Fresh vegetables"
-            className="w-[260px] h-[200px] object-cover rounded-xl absolute -bottom-8 -right-6 border-8 border-white shadow-md"
+            className="hidden md:block w-[260px] h-[200px] object-cover rounded-xl absolute -bottom-8 -right-9 border-8 border-white shadow-md"
           />
         </div>
 
