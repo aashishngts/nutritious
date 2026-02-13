@@ -33,7 +33,7 @@ const BlogList = () => {
             description: blog.content?.substring(0, 120) + "...",
             category: blog.category || "Health",
             date: blog.formattedDate,
-            image: blog.coverImage,
+            image: blog.coverImage.url,
             fullContent: blog.content,
           })) || []
         );
