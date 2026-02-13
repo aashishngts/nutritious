@@ -3,15 +3,14 @@ import { FaWeight, FaRunning, FaUserTie, FaAppleAlt } from "react-icons/fa";
 
 export default function Steps() {
   const steps = [
-  { num: "01", title: "Weight Loss Program", icon: <FaWeight /> },
-  { num: "02", title: "Fitness Performance", icon: <FaRunning /> },
-  { num: "03", title: "Personal Coaching", icon: <FaUserTie /> },
-  { num: "04", title: "Child Nutrition", icon: <FaAppleAlt /> },
-];
-
+    { num: "01", title: "Weight Loss Program", icon: <FaWeight /> },
+    { num: "02", title: "Fitness Performance", icon: <FaRunning /> },
+    { num: "03", title: "Personal Coaching", icon: <FaUserTie /> },
+    { num: "04", title: "Child Nutrition", icon: <FaAppleAlt /> },
+  ];
 
   return (
-    <section className="relative py-24 bg-[#f8fbf9] overflow-hidden">
+    <section className="relative py-18 bg-[#f8fbf9] overflow-hidden">
       {/* Soft Theme Background Accent */}
       <div className="absolute -top-32 left-0 w-96 h-96 bg-[#138f44]/10 rounded-full blur-3xl"></div>
 
@@ -45,9 +44,8 @@ export default function Steps() {
               </span>
 
               <div className="w-14 h-14 flex items-center justify-center bg-[#138f44]/10 text-[#138f44] rounded-xl mb-5 transition group-hover:scale-110 text-2xl">
-  {step.icon}
-</div>
-
+                {step.icon}
+              </div>
 
               {/* Title */}
               <h3 className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-[#138f44] transition">
@@ -56,13 +54,14 @@ export default function Steps() {
 
               {/* Text */}
               <p className="text-gray-600 text-sm leading-relaxed mb-5">
-                Simple guided steps to begin your transformation journey with expert support.
+                Simple guided steps to begin your transformation journey with
+                expert support.
               </p>
 
               {/* Link */}
-              <button className="text-[#138f44] font-semibold text-sm tracking-wide inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+              {/* <button className="text-[#138f44] font-semibold text-sm tracking-wide inline-flex items-center gap-1 group-hover:gap-2 transition-all">
                 Read More →
-              </button>
+              </button> */}
 
               {/* Hover Glow */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#138f44]/0 via-[#138f44]/0 to-[#138f44]/10 opacity-0 group-hover:opacity-100 transition"></div>

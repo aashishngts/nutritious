@@ -21,13 +21,11 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-gradient-to-b from-[#0f172a] to-[#0b1120] text-white overflow-hidden">
-      
       {/* Soft green glow */}
       <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#138f44]/10 rounded-full blur-3xl"></div>
 
       <div className="relative py-20">
-        <div className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-14 grid grid-cols-1 md:grid-cols-4 gap-14">
-          
+        <div className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-14 grid grid-cols-1 md:grid-cols-3 gap-14 justify-center">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-6">
@@ -38,7 +36,9 @@ export default function Footer() {
                   className="w-5 h-5"
                 />
               </div>
-              <span className="text-2xl font-bold tracking-wide">Nutritius</span>
+              <span className="text-2xl font-bold tracking-wide">
+                Nutritius
+              </span>
             </div>
 
             <p className="text-gray-400 mb-6 leading-relaxed">
@@ -74,8 +74,9 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="text-center md:text-left mx-auto">
             <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
+
             <ul className="space-y-3 text-gray-400">
               {[
                 { name: "Home", path: "/" },
@@ -97,7 +98,7 @@ export default function Footer() {
           </div>
 
           {/* Services */}
-          <div>
+          {/* <div>
             <h4 className="text-lg font-semibold mb-6">Our Services</h4>
             <ul className="space-y-3 text-gray-400">
               {[
@@ -113,7 +114,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Contact */}
           <div>
@@ -143,9 +144,7 @@ export default function Footer() {
       {/* Scroll To Top Button */}
       {showButton && (
         <button
-          onClick={() =>
-            window.scrollTo({ top: 0, behavior: "smooth" })
-          }
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="fixed bottom-8 right-8 bg-gradient-to-r from-[#138f44] to-[#0f7638] text-white w-12 h-12 rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition"
         >
           ↑

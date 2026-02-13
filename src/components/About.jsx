@@ -19,7 +19,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="relative py-32 bg-gradient-to-b from-white to-[#f6fbf7] overflow-hidden">
+    <section id="about" className="relative py-20 bg-gradient-to-b from-white to-[#f6fbf7] overflow-hidden">
       
       {/* Background Accent */}
       <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-[#138f44]/10 rounded-full blur-3xl"></div>

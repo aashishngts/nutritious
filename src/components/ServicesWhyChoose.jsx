@@ -10,7 +10,7 @@ const ServicesWhyChoose = () => {
   ];
 
   return (
-    <section className="relative w-full py-32 bg-gradient-to-b from-white to-[#f6fbf7] overflow-hidden">
+    <section className="relative w-full py-20 bg-gradient-to-b from-white to-[#f6fbf7] overflow-hidden">
       
       {/* Background Glow */}
       <div className="absolute -left-32 top-0 w-[450px] h-[450px] bg-[#86b817]/10 rounded-full blur-3xl"></div>
@@ -58,14 +58,14 @@ const ServicesWhyChoose = () => {
           </div>
 
           {/* Premium Button */}
-          <button className="relative inline-flex items-center justify-center px-10 py-4 rounded-full font-semibold text-white overflow-hidden group">
+          {/* <button className="relative inline-flex items-center justify-center px-10 py-4 rounded-full font-semibold text-white overflow-hidden group">
             <span className="absolute inset-0 bg-gradient-to-r from-[#138f44] via-[#16a34a] to-[#0f766e] transition-transform duration-500 group-hover:scale-105"></span>
             <span className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_2px_2px,white_1px,transparent_1px)] bg-[length:18px_18px]"></span>
             <span className="absolute -left-10 top-0 h-full w-10 bg-white/20 skew-x-12 transform group-hover:translate-x-[250%] transition-transform duration-700"></span>
             <Link to="/contact" className="relative z-10 tracking-wider uppercase">
               Book Consultation
             </Link>
-          </button>
+          </button> */}
         </div>
       </div>
     </section>

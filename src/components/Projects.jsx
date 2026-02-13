@@ -20,7 +20,7 @@ export default function Projects() {
   ];
 
   return (
-    <section className="py-24 bg-[#f8fbf9]">
+    <section className="py-18 bg-[#f8fbf9]">
       <div className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-14">
         {/* Grid */}
         <div className="grid gap-8 md:grid-cols-3 auto-rows-[260px]">

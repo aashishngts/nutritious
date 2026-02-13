@@ -84,9 +84,9 @@ export default function ServicesGrid() {
 
               <p className="text-gray-600 leading-relaxed mb-6">{item.desc}</p>
 
-              <button className="text-[#138f44] font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+              {/* <button className="text-[#138f44] font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
                 Learn More →
-              </button>
+              </button> */}
             </div>
           ))}
         </div>

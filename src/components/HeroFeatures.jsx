@@ -20,7 +20,7 @@ const features = [
 
 export default function HeroFeatures() {
   return (
-    <section className="pt-14 pb-6 md:px-6">
+    <section className="pt-18 pb-6 md:px-6">
       <div className="max-w-full mx-auto md:px-10 px-4">
         
         {/* Section Heading */}

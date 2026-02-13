@@ -17,7 +17,7 @@ export default function Blog() {
   ];
 
   return (
-    <section id="blog" className="relative py-24 bg-[#f8fbf9] overflow-hidden">
+    <section id="blog" className="relative py-18 bg-[#f8fbf9] overflow-hidden">
       {/* Soft Background Accent */}
       <div className="absolute -top-32 left-0 w-96 h-96 bg-[#138f44]/10 rounded-full blur-3xl"></div>
 

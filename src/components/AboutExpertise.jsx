@@ -57,12 +57,12 @@ const AboutExpertise = () => {
                 {item.desc}
               </p>
 
-              <a
+              {/* <a
                 href="#"
                 className="inline-flex items-center gap-2 text-[#138f44] font-semibold text-sm group-hover:gap-3 transition-all"
               >
                 Read More →
-              </a>
+              </a> */}
             </div>
           ))}
         </div>

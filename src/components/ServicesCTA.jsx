@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 const ServicesCTA = () => {
   return (
-    <section className="relative py-24 bg-white overflow-hidden">
+    <section className="relative py-18 bg-white overflow-hidden">
       
       {/* Soft Glow Accents */}
       <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[500px] h-[300px] bg-[#86b817]/10 blur-3xl rounded-full"></div>

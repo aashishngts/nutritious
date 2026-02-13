@@ -25,7 +25,7 @@ function Home() {
       <Steps />
       <Testimonials />
       {/* <CTA /> */}
-      <Blog />
+      {/* <Blog /> */}
       <Footer />
     </div>
   );
